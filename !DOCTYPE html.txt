@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML 버튼 예제</title>
+</head>
+<body>
+	<button onclick="submitForm()">제출하기</button>
+	<form id="myForm" method="post" action="/submit">
+		<input type="text" name="name" placeholder="이름을 입력하세요">
+		<input type="submit" value="제출">
+	</form>
+</body>
+</html>
+______________________________________________________________________________________________________
+
+function submitForm() {
+	var form = document.getElementById("myForm");
+	form.submit();
+}
+
+@Controller
+public class MyController {
+
+	@PostMapping("/submit")
+	public String handleSubmit(@RequestParam("name") String name) {
+		// 입력받은 이름을 처리하는 로직
+		return "result";
+	}
+}

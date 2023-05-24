@@ -1,0 +1,241 @@
+@charset "UTF-8";
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+  /*기본 설정*/
+  body{
+
+    text-align: center;
+    overflow: scroll;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    height: 12vh;
+    background-color: #ffffff;
+    font-family: '맑은 고딕' 돋움; 
+    color:#333;
+    margin:0 auto;
+}
+
+/*탭 메뉴 설정*/
+
+
+ul li{
+        
+    list-style-type: none;
+
+}
+
+.tab-box{
+    margin: 0 auto;
+
+    width:80vw;
+
+}
+
+#gachonlogo {
+width:15.85vw;
+height:9vh;
+display:flex;
+position:relative;
+left:0;
+float:left;
+top: 1.5vh;
+}
+
+
+
+.tab-box li{
+
+    
+   float:left;
+    width:15.85vw;
+    font-size: 2vh;
+    height:9.86vh;      
+
+    line-height:9.03vh;          
+
+   /* 중앙정렬 */
+    text-align: center;
+
+    background-color: hsl(0, 0%, 100%);
+
+    border-radius:0.21vh 0.14vw 0 0;
+
+    
+    
+
+cursor: pointer;
+
+}
+
+.tab-box li.selected{
+
+    background-color: orange;
+
+}
+
+.tab-view{
+
+    width:23.53vw;
+
+    height:6.94vh;
+
+    line-height: 6.94vh;
+
+    border: 1px solid gray;
+
+    text-align:center;
+
+    margin-top:-0.07vh;
+
+}
+/*배너*/
+.bannerbackground{
+    display: flex;
+    height: 10vh;
+    margin: 0 auto;
+    background-color: #004593;
+    
+}
+.banner{
+    display: flex;
+    width: 80vw;
+    height: 10vh;
+    margin: 0 auto;
+}
+.banner h1{
+    font-size: 4.5vh;
+    margin-left:2vw ;
+    margin-top: 2vh;
+    color: white;
+}
+
+/* 검색 창*/
+.searchtitle{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80vw;
+    margin-top: 5vh;
+    
+}
+.searchtitlebackground{
+    padding-left: 0.2vw;
+    padding-right: 0.2vw;
+    position: absolute;
+    z-index: 2;
+    background-color: #004593;
+    height:5.4vh;
+    border-top: 2px solid #004593;
+    border-left:2px solid #004593;
+    border-right:2px solid #004593;
+}
+.searchtitle h1{
+    font-size: 3.6vh;
+    margin-bottom: 0;
+    background-color: #004593;
+    color: white;
+}
+.searchbox{
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 25vw;
+    background-color: white;
+    margin-left: auto;
+    margin-right:auto;
+    border: 2px solid gray;
+    position: relative;
+    top: 5vh;
+}
+.searchbox h1{
+    font-size: 3vh;
+    margin-left: 0;
+}
+.searchselectbox1{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+}
+
+.selectbox1,.selectbox2,.selectbox3{
+    display: flex;
+    flex-direction: row;
+    height: 4vh;
+    margin-left: 2vw;
+    margin-bottom: 1vh;
+}
+.selectbox1 input,.selectbox2 input,.selectbox3 input{
+    width: 40vw
+    
+}
+.selectbox1 select,.selectbox2 select,.selectbox3 select{
+    background-color: rgb(228, 231, 250);
+    
+}
+
+
+.searchcheckbox{
+    display: flex;
+    flex-direction: column; 
+    height: 6vh;
+    background-color: white;
+    margin-bottom: 1.5vh;
+}
+.searchcheckbox h2{
+    font-size: 2vh;
+    margin-left: 2vw    ;
+}
+.checkbox1,.checkbox2{
+    display: flex;
+    flex-direction: row;
+    height: 3vh;
+    font-size: 2vh;
+    
+}
+.checkbox1 input,.checkbox2 input{
+    margin-right: 0.3vw;
+    margin-left: 0.3vw;
+}
+
+.searchselectbox2{
+    display: flex;
+    flex-direction: column;
+    height: 12vh;
+}
+.selectbox4,.selectbox5,.selectbox6{
+    display: flex;
+    flex-direction: row;
+    height: 3vh;
+    font-size: 2vh;
+    margin-bottom: 1vh;
+}
+.selectbox4 select{
+    width: 8vw;
+    margin-left: 1vw;
+    background-color: rgb(228, 231, 250);
+}
+.selectbox4 h2,.selectbox5 h2,.selectbox6 h2{
+    margin-left: 2vw;
+    margin-right: 2vw;
+    font-size: 2vh;
+}
+.selectbox6{
+    margin-top: 1.3vh;
+}
+.selectbox6 button{
+    height: 3.5vh;
+    font-size: 2vh;
+    text-align: center;
+    width: 8vw;
+    margin: 0 auto;
+    background-color: rgb(228, 231, 250);
+    border: 1px solid black;
+}

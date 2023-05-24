@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search result</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+    <script th:inline="javascript">
+        function showBookDetails(row) {
+            var bookId = row.getAttribute("data-book-id");
+            window.location.href = "/book/details/" + bookId;
+        }
+    </script>
+    <link type="text/css" rel="stylesheet" href ="../static/css/style.css" th:href="@{css/style.css}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="tab-box">
+            <a th:href="@{/home}"><img id="gachonlogo" src ="../static/img/gachonlogo.jpg" th:src="@{img/gachonlogo.jpg}" /></a>
+
+            <ul id="tab">
+
+                <li><a th:href="@{/introduce}">도서관 소개</a></li>
+
+                <li><a th:href="@{/search-page}">검색</a></li>
+
+                <li><a th:href="@{/mypage}">대출/연장/예약</a></li>
+
+                <li><a th:href="@{/community}">커뮤니티</a></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+    <h1>Search Result</h1>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <!-- Add more columns if needed -->
+        </tr>
+        <tr th:each="book : ${books}" th:attr="data-book-id=${book.book_code}" onclick="showBookDetails(this)">
+            <td th:text="${book.book_title}"></td>
+            <td th:text="${book.book_author}"></td>
+            <td th:text="${book.book_publisher}"></td>
+            <!-- Add more columns if needed -->
+        </tr>
+    </table>
+
+    <div th:if="${books.isEmpty()}">
+        <p>No results found.</p>
+    </div>
+</body>
+
+</html>

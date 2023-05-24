@@ -1,0 +1,44 @@
+create table book(
+	book_code INT PRIMARY KEY,
+    book_title VARCHAR(255) not null,
+    book_author varchar(255) not null,
+    book_publisher varchar(255) not null,
+    book_borrow boolean not null,
+    book_lang varchar(255),
+    book_type varchar(255),
+    book_year year
+);
+
+create table borrow(
+	book_code INT primary key,
+    user_num INT,
+    start_date date,
+    end_date date,
+    FOREIGN KEY (book_code) references book (book_code),
+    FOREIGN KEY (user_num) references user (user_num)
+);
+
+create table reservation(
+	book_code INT,
+    user_num INT,
+    date datetime,
+    FOREIGN KEY (book_code) references book (book_code),
+    FOREIGN KEY (user_num) references user (user_num),
+    primary key(book_code, date)
+);
+
+drop table reservation;
+drop table book;
+drop table borrow;
+
+select * from book;
+
+desc book;
+desc user;
+desc borrow;
+desc reservation;
+
+
+show tables;
+
+use library_service;

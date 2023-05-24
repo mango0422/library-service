@@ -1,0 +1,9 @@
+<servlet>
+    <servlet-name>thymeleaf</servlet-name>
+    <servlet-class>org.thymeleaf.spring4.SpringTemplateEngine</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>thymeleaf</servlet-name>
+    <url-pattern>*.html</url-pattern>
+</servlet-mapping>

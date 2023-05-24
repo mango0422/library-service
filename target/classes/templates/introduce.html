@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Library</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f1f1f1;
+			margin: 0;
+			padding: 0;
+		}
+        header {
+		max-width: 800px;
+		background-color: #4A4A4A;
+		color: #fff;
+		padding: 20px;
+		text-align: center;
+		margin: 0 auto;
+	}
+	
+	h1 {
+		font-size: 36px;
+		margin: 0;
+	}
+	
+	p {
+		font-size: 18px;
+		line-height: 1.5;
+		margin: 20px;
+	}
+	
+	button {
+		background-color: #4CAF50;
+		border: none;
+		color: white;
+		padding: 12px 30px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 20px;
+		cursor: pointer;
+	}
+	
+	button:hover {
+		background-color: #3e8e41;
+	}
+	
+	.container {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 20px;
+		box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		background-color: #fff;
+	}
+</style>
+<link type="text/css" rel="stylesheet" href ="../static/css/style.css" th:href="@{css/style.css}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="header">
+        <div class="tab-box">
+            <a th:href="@{/home}"><img id="gachonlogo" src ="../static/img/gachonlogo.jpg" th:src="@{img/gachonlogo.jpg}" /></a>
+
+            <ul id="tab">
+
+                <li><a th:href="@{/introduce}">도서관 소개</a></li>
+
+                <li><a th:href="@{/search-page}">검색</a></li>
+
+                <li><a th:href="@{/mypage}">대출/연장/예약</a></li>
+
+                <li><a th:href="@{/community}">커뮤니티</a></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+	<header>
+		<h1>Welcome to our Library</h1>
+	</header>
+	<div class="container">
+		<p>Our library is a treasure trove for avid readers. We have a vast collection of books covering various genres, including classic literature, modern fiction, non-fiction, and textbooks. Whether you're a student looking for academic resources or a casual reader searching for your next favorite book, we have got you covered.</p>
+		<p>Borrowing books from our library is easy and convenient. You can simply visit our website, search for the book you want, and place a request for borrowing it. Once your request is approved, you can collect the book from our library and enjoy reading it at your leisure. </p>
+		<button>Borrow Now</button>
+	</div>
+</body>
+</html>

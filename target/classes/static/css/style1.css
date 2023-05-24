@@ -1,0 +1,105 @@
+/* style.css */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#search-container {
+	background-color: #004593;
+	color: #fff;
+	padding: 30px;
+}
+
+#search-form {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#search-input {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+#search-button {
+	background-color: #fff;
+	color: #004593;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#search-button:hover {
+	background-color: #ddd;
+}
+
+#search-results {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#search-results li {
+	background-color: #fff;
+	color: #000;
+	margin: 10px;
+	padding: 10px;
+	width: calc(33.33% - 20px);
+	box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+}
+
+#search-results li img {
+	max-width: 100%;
+	height: auto;
+}
+
+#search-results li span {
+	font-size: 20px;
+	font-weight: bold;
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+#search-results li p {
+	font-size: 16px;
+	margin: 5px 0;
+}
+
+#search-results li a {
+	background-color: #004593;
+	color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+	display: block;
+	margin-top: 10px;
+}
+
+#search-results li a:hover {
+	background-color: #003a72;
+}
+
+#results-section {
+	display: none;
+	padding: 30px;
+}
+
+#results-section h2 {
+	font-size: 32px;
+	margin-top: 0;
+}

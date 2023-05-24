@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href ="../static/css/style.css" th:href="@{css/style.css}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="tab-box">
+            <a th:href="@{/home}"><img id="gachonlogo" src ="../static/img/gachonlogo.jpg" th:src="@{img/gachonlogo.jpg}" /></a>
+
+            <ul id="tab">
+
+                <li><a th:href="@{/introduce}">도서관 소개</a></li>
+
+                <li><a th:href="@{/search-page}">검색</a></li>
+
+                <li><a th:href="@{/mypage}">대출/연장/예약</a></li>
+
+                <li><a th:href="@{/community}">커뮤니티</a></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+    <h1>커뮤니티 만들어?</h1>
+</body>
+</html>

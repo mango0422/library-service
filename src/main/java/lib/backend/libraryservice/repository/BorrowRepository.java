@@ -28,4 +28,8 @@ public interface BorrowRepository extends JpaRepository<Borrow, Long> {
     @Modifying
     @Query(value = "INSERT INTO borrow (book_code, user_num) values (:book_code, :user_num)", nativeQuery = true)
     void doBorrow(@Param("book_code") Integer book_code, @Param("user_num") Integer user_num);
+
+    @Modifying
+    @Query("DELETE FROM borrow b WHERE b.book_code = :book_code")
+    void endBorrow(@Param("book_code") Integer book_code);
 }

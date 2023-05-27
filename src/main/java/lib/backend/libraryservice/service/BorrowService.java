@@ -53,8 +53,8 @@ public class BorrowService {
 
     // 반납 기능
     @Transactional
-    public void endborrowFunc(Integer user_num, Integer book_code) {
-        borrowRepository.endBorrow(book_code, user_num);
+    public void endborrowFunc(Integer book_code) {
+        borrowRepository.endBorrow(book_code);
         bookRepository.updateBookBorrowByBookCode(book_code, 0);
     }
 

@@ -41,12 +41,18 @@ public class Book implements Serializable {
     @Column(name = "book_year")
     private Integer book_year;
 
+    @Column(name = "book_summary")
+    private String book_summary;
+
+    @Column(name = "book_ISBN")
+    private String book_ISBN;
+
     // 생성자
     public Book() {
     }
 
     public Book(Integer book_code, String book_title, String book_author, String book_publisher, Integer book_borrow,
-            String book_lang, String book_type, Integer book_year) {
+            String book_lang, String book_type, Integer book_year, String book_summary, String book_ISBN) {
         this.book_code = book_code;
         this.book_title = book_title;
         this.book_author = book_author;
@@ -55,5 +61,7 @@ public class Book implements Serializable {
         this.book_lang = book_lang;
         this.book_type = book_type;
         this.book_year = book_year;
+        this.book_summary = book_summary;
+        this.book_ISBN = book_ISBN;
     }
 }

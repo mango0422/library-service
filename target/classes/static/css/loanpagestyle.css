@@ -4,23 +4,27 @@
     margin: 0;
     padding: 0;
 }
+
   /*기본 설정*/
   body{
 
     text-align: center;
     overflow: scroll;
 }
-
+a{
+    text-decoration: none;
+}
 .header{
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 84vw;
     height: 12vh;
     background-color: #ffffff;
     font-family: '맑은 고딕' 돋움; 
     color:#333;
     margin:0 auto;
 }
+
 
 /*탭 메뉴 설정*/
 
@@ -34,12 +38,12 @@ ul li{
 .tab-box{
     margin: 0 auto;
 
-    width:80vw;
+    width:84vw;
 
 }
 
 #gachonlogo {
-width:15.85vw;
+width:16.8vw;
 height:9vh;
 display:flex;
 position:relative;
@@ -54,7 +58,7 @@ top: 1.5vh;
 
     
    float:left;
-    width:15.85vw;
+    width:16.8vw;
     font-size: 2vh;
     height:9.86vh;      
 
@@ -105,7 +109,7 @@ cursor: pointer;
 }
 .banner{
     display: flex;
-    width: 80vw;
+    width: 84vw;
     height: 10vh;
     margin: 0 auto;
 }
@@ -120,20 +124,36 @@ cursor: pointer;
 .loan{
     display: flex;
     flex-direction: column;
-    width: 80vw;
+    width: 84vw;
     margin: 0 auto;
 }
 .loantitle{
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 84vw;
     margin-top: 5vh;
     border-bottom: 2px solid #004593;
+}
+
+
+
+.loantitle button{
+    background-color: white;
+    border-left: 0;
+    border-right: #004593 solid 2px;
+    border-top: #004593 solid 2px;
+    border-bottom: 0;
+}
+.loantitle #loanbtn{
+    border-left: #004593 solid 2px;
+}
+.loantitle a{
+    color: black;
 }
 .search{
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 84vw;
     height: 14vh;
     margin: 0 auto;
     background-color: aliceblue;
@@ -176,29 +196,39 @@ cursor: pointer;
 .pagedata{
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 84vw;
     height: 2vh;
     margin: 0 auto;
     margin-top: 3vh;
 }
 .loanedbooktable{
     display: flex;
-    width: 80vw;
+    width: 84vw;
     margin: 0 auto;
 }
 .loanedbooktable table{
-    width: 80vw;
+    width: 84vw;
     border: 1px solid black;
     
 }
 .submitbutton{
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 84vw;
     margin-top: 5vh;
     margin-left:auto;
     margin-right: auto;
 }
 .submitbutton button{
     margin:0 auto;
+}
+.reservedbooktable{
+    display: none;
+    width: 84vw;
+    margin: 0 auto;
+}
+
+.reservedbooktable table{
+    width: 84vw;
+    border: 1px solid black;
 }

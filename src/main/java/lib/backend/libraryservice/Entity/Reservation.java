@@ -1,4 +1,4 @@
-package lib.backend.libraryservice.Entity;
+    package lib.backend.libraryservice.Entity;
 
 import com.google.cloud.Date;
 
@@ -30,7 +30,7 @@ public class Reservation implements Serializable {
     @Column(name = "user_num")
     private Integer user_num;
 
-    @Column(name = "start_date")
+    @Column(name = "date")
     private Timestamp date;
 
     public Reservation() {

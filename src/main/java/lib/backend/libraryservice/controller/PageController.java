@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lib.backend.libraryservice.Entity.User;
 import lib.backend.libraryservice.service.BorrowService;
@@ -32,7 +33,9 @@ public class PageController {
     }
 
     @GetMapping("/introduce")
-    public String introduce() {
+    public String introduce(HttpServletRequest request, Model model) {
+        String currentUrl = request.getRequestURI();
+        model.addAttribute("currentUrl", currentUrl);
         return "introduce";
     }
 

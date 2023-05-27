@@ -11,7 +11,6 @@ import java.util.List;
 
 @Service
 public class BookService {
-
     public List<Book> searchBooks(
             String title1, String title2, String title3,
             String input1, String input2, String input3,
@@ -88,5 +87,4 @@ public class BookService {
     public Book getByBookCode(Integer book_code) {
         return bookRepository.getByBookCode(book_code);
     }
-
 }

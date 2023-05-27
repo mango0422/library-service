@@ -1,90 +1,143 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8">
-	<title>Library</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			background-color: #f1f1f1;
-			margin: 0;
-			padding: 0;
-		}
-        header {
-		max-width: 800px;
-		background-color: #4A4A4A;
-		color: #fff;
-		padding: 20px;
-		text-align: center;
-		margin: 0 auto;
-	}
-	
-	h1 {
-		font-size: 36px;
-		margin: 0;
-	}
-	
-	p {
-		font-size: 18px;
-		line-height: 1.5;
-		margin: 20px;
-	}
-	
-	button {
-		background-color: #4CAF50;
-		border: none;
-		color: white;
-		padding: 12px 30px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		margin: 20px;
-		cursor: pointer;
-	}
-	
-	button:hover {
-		background-color: #3e8e41;
-	}
-	
-	.container {
-		max-width: 800px;
-		margin: 0 auto;
-		padding: 20px;
-		box-shadow: 0 0 10px rgba(0,0,0,0.2);
-		background-color: #fff;
-	}
-</style>
-<link type="text/css" rel="stylesheet" href ="../static/css/style.css" th:href="@{css/style.css}" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
-	<div class="header">
-        <div class="tab-box">
-            <a th:href="@{/home}"><img id="gachonlogo" src ="../static/img/gachonlogo.jpg" th:src="@{img/gachonlogo.jpg}" /></a>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Library</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        max-width: 800px;
+        background-color: #4a4a4a;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        margin: 0 auto;
+      }
 
-            <ul id="tab">
+      h1 {
+        font-size: 36px;
+        margin: 0;
+      }
 
-                <li><a th:href="@{/introduce}">도서관 소개</a></li>
+      p {
+        font-size: 18px;
+        line-height: 1.5;
+        margin: 20px;
+      }
 
-                <li><a th:href="@{/search-page}">검색</a></li>
+      button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 20px;
+        cursor: pointer;
+      }
 
-                <li><a th:href="@{/mypage}">대출/연장/예약</a></li>
+      button:hover {
+        background-color: #3e8e41;
+      }
 
-                <li><a th:href="@{/community}">커뮤니티</a></li>
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+      }
+    </style>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../static/css/style.css"
+      th:href="@{css/style.css}"
+    />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../static/css/Introductionstyle.css"
+      th:href="@{css/Introductionstyle.css}"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <div class="tab-box">
+        <a th:href="@{/home}"
+          ><img
+            id="gachonlogo"
+            src="../static/img/gachonlogo.jpg"
+            th:src="@{img/gachonlogo.jpg}"
+        /></a>
 
-            </ul>
+        <ul id="tab">
+          <li><a th:href="@{/introduce}">도서관 소개</a></li>
 
-        </div>
+          <li><a th:href="@{/search-page}">검색</a></li>
 
+          <li><a th:href="@{/mypage}">대출/연장/예약</a></li>
+
+          <li><a th:href="@{/community}">커뮤니티</a></li>
+        </ul>
+      </div>
     </div>
-	<header>
-		<h1>Welcome to our Library</h1>
-	</header>
-	<div class="container">
-		<p>Our library is a treasure trove for avid readers. We have a vast collection of books covering various genres, including classic literature, modern fiction, non-fiction, and textbooks. Whether you're a student looking for academic resources or a casual reader searching for your next favorite book, we have got you covered.</p>
-		<p>Borrowing books from our library is easy and convenient. You can simply visit our website, search for the book you want, and place a request for borrowing it. Once your request is approved, you can collect the book from our library and enjoy reading it at your leisure. </p>
-		<button>Borrow Now</button>
-	</div>
-</body>
+
+    <div id="divContent">
+      <div id="divGuide">
+        <div class="listContent">
+          <p class="introTitle">도서관 소개<span>INTRODUCTION</span></p>
+          <p class="introImg">
+            <img
+              src="../static/img/introImg.gif"
+              th:src="@{img/introImg.gif}"
+              alt="중앙도서관전경"
+            />
+          </p>
+          <p class="text">
+            <span class="blue">1982년 개관한 중앙도서관은 </span
+            ><span class="black">1988년 확대,개편하면서</span> 1994년 10월
+            현재의 건물 (지하1층,지상4층 연면적 10,500㎡)로 이전하였습니다.
+            가천대학교 중앙도서관은 2012년 통합을 계기로 글로벌캠퍼스와 메디컬
+            캠퍼스에서 각각의 도서관을 운영중에 있습니다. <br /><br />
+            1995년 12월에 도서관전산화시스템(Vintage_LAS)을 도입하여
+            도서관자동화의 기반을 구축하였고,1998년 4월 전자정보관을 개관하여
+            다양한 형태의 서비스를 제공하기 시작하였습니다. 전자정보관은
+            이용자의 큰 호응에 힘입어 2003년 인터넷 카페로 새롭게 변신하였고,
+            이는 2010년 8월에 개관한 전자정보도서관의 초석이 되었습니다.
+            비전타워에 위치한 전자정보도서관은 전자정보실, 스터디룸 및
+            일반열람실로 구성되어 있으며, 21세기 정보화 시대에 부응할 수 있도록
+            첨단 학술정보제공 기관으로서의 위상을 확립하고 있습니다.
+            <br /><br />
+            중앙도서관은 현재 약110만권의 장서를 비롯하여 전자저널, 오디오북,
+            e-book 등 다양한 형태의 전자자료와 각종 멀티미디어장비를 구축하여
+            최첨단 전자도서관시스템을 갖추고 있으며, 교육과 연구에 필요한 각종
+            정보를 효과적으로 지원함으로서 대학 경쟁력 강화에 일익을 하고
+            있습니다. 중앙도서관은 다양한 학술 정보를 보다 신속하게 제공하기
+            위해 타 대학 도서관 및 연구기관과의 상호 협력 체제를 확대하고
+            있으며, 앞으로 학술정보센터와 복합문화공간으로서의 기능을 견실하게
+            수행하여 나갈 것입니다.
+          </p>
+        </div>
+      </div>
+      <div class="location">
+        <img
+          src="../static/img/location.png"
+          th:src="@{img/location.png}"
+          alt="중앙도서관위치"
+        />
+      </div>
+    </div>
+  </body>
 </html>

@@ -5,10 +5,13 @@
     text-align: center;
     overflow: scroll;
 }
+a {
+    text-decoration: none;
+  }
 .header{
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 84vw;
     height: 12vh;
     background-color: #ffffff;
     font-family: '맑은 고딕' 돋움; 
@@ -26,21 +29,21 @@
     display:flex;
     flex-direction: column;
     position:relative;
-    width: 80vw;
+    width: 84vw;
     height:50vh;
     margin:0 auto;
 }
 .loginandsearch{
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 84vw;
     height:30vh;
     background-color: #ffffff;
     margin:0 auto;
 }
 .footer{
     display:flex;
-    width: 80vw;
+    width: 84vw;
     height: 4.6948vh;
     background-color: #F8CBAD;
     margin: 0 auto;
@@ -70,7 +73,7 @@
     position:absolute;
     z-index: 1;
     top: 20.9vh;
-    right: 5.6vw;
+    right: 9.5vw;
     height: 1.9vh;
     width: 1.1vw;
 }
@@ -108,6 +111,8 @@ img {
     display: flex;
     flex-direction: row;
 }
+
+
  *{
     padding: 0;
     margin: 0;
@@ -118,18 +123,27 @@ img {
 }
 
 .tab_wrap{
-    width: 30vw;
+    width: 32vw;
     height: 30vh;
     padding: 0.47vw;
-    border: 0.13vw solid #004593;
+    border: 1px solid #004593;
     position: relative;
     
 }
 .tab_wrap2{
-    width: 30vw;
-    height: 30vh;
+    width: 32vw;
+    height: 15vh;
     padding: 0.47vw;
-    border: 0.13vw solid #004593;
+    border: 1px solid #004593;
+    border-bottom: none;
+    position: relative;
+    left: 0vw;
+}
+.tab_wrap3{
+    width: 32vw;
+    height: 15vh;
+    padding: 0.47vw;
+    border: 1px solid #004593;
     position: relative;
     left: 0vw;
 }
@@ -149,21 +163,11 @@ img {
     font-size: 0.56vh;
     background: white;
     border: 1px solid grey;
-    border-bottom: none;
+    border-bottom: 1px ;
     background: white;
     z-index: 3;
 }
-.notice_off{
-    display: inline-block;
-    width: 3.72vw;
-    height: 2.08vh;
-    line-height: 2.08vh;
-    text-align: center;
-    font-size: 0.56vw;
-    background: lightgrey;
-    border: 1px solid grey;
-    z-index: 3;
-}
+
 
 .gallery_off{
     display: inline-block;
@@ -171,37 +175,47 @@ img {
     height: 2.08vh;
     line-height: 2.08vh;
     text-align: center;
-    font-size: 0.56vw;
+    font-size: 0.56vh;
     background: lightgrey;
     border-top: 1px solid grey;
     border-right: 1px solid grey;
     border-bottom: 1px solid grey;
 }
-.gallery_on{
-    display: inline-block;
-    width: 3.72vw;
-    height: 2.08vh;
-    line-height: 2.08vh;
-    text-align: center;
-    font-size: 0.56vw;
-    background: white;
-    border-top: 1px solid grey;
-    border-right: 1px solid grey;
-    border-bottom: none;
-}
-.contents_box,.contents_box2{
+.contents_box{
     position: relative;
     margin-top: 2.01vh;
-    width: 28.4vw;
+    width: 30.7vw;
     height: 26vh;
     border: 1px solid grey;
     z-index: 1;
 }
+.contents_box2
+{
+    position: relative;
+    margin-top: 2.01vh;
+    width: 30.7vw;
+    height: 11vh;
+    border: 1px solid grey;
+    z-index: 1;
+}
+.contents_box3
+{
+    position: relative;
+    margin-top: 2.01vh;
+    width: 30.7vw;
+    height: 11vh;
+    border: 1px solid grey;
+    z-index: 1;
+}
+.contents_box_wrap{
+    display: flex;
+    flex-direction: column;
+}
 .notice_letter{
     display: flex;
-    padding: 1vw;
-    width: 28vw;
     flex-direction: column;
+    padding: 1vh;
+    width: 28vw;
 }
 .notice_letter>li{
     line-height: 1.88vh;
@@ -209,31 +223,61 @@ img {
 }
 .notice_letter>li>a{
     float: left;
-    font-size: 2vh;
+    font-size: 1vh;
+    color: black;
 }
 .notice_letter>li>span{
     float: right;
 }
 
-.gallery_img{
-    display: none; /*활성시 flex*/
-    justify-content: space-between; 
-    padding: 10px;
-    width: 16.51vw;
-    height: 8.68vh;
-    font-size: 0;
-}
-.gallery_img>li{
-    display: inline-block;
-    overflow: hidden;
-    background: black;
-    width: 4.65vw;
-    height: 6.94vh;
-}
+.QnA{
+    display: none;
+    flex-direction: column;
+    padding: 1vh;
+    width: 28vw;
 
-.gallery_img>li>a>img{
-    width: 4.65vw;
-    height: 6.94vh;
+}
+.QnA li{
+    display: inline-block;
+    margin-left: 0;
+    font-size: 1vh;
+    line-height: 1.88vh;
+    font-size: 0.9rem;
+    
+}
+.QnA a{
+    float: left;
+    color: black;
+    font-size: 1vh;
+}
+.QnA>li>span{
+    float: right;
+}
+.loanandreservetabletitle{
+    display: inline-block;
+    width: 8vw;
+    height: 2.08vh;
+    line-height: 2.08vh;
+    text-align: center;
+    font-size: 0.56vh;
+    background: white;
+    border: 1px solid grey;
+    border-bottom: 1px ;
+    background: white;
+    z-index: 3;
+}
+.Sitesrelatedtoacademicinformation{
+    display: inline-block;
+    width: 12vw;
+    height: 2.08vh;
+    line-height: 2.08vh;
+    text-align: center;
+    font-size: 0.56vh;
+    background: white;
+    border: 1px solid grey;
+    border-bottom: 1px ;
+    background: white;
+    z-index: 3;
 }
 /*가운데 이미지*/
 .imgdiv{
@@ -382,8 +426,9 @@ img {
 }
 .btnwrap{
     display: flex;
-    width:20vw;
+    width:18vw;
     text-align:center;
+    margin-top:2vh;
 }
 .btnwrap label{
     position:absolute;
@@ -426,12 +471,12 @@ ul li{
 .tab-box{
          margin: 0 auto;
 
-         width:80vw;
+         width:84vw;
 
 }
 
 #gachonlogo {
-    width:15.85vw;
+    width:16.8vw;
     height:9vh;
     display:flex;
     position:relative;
@@ -446,7 +491,7 @@ ul li{
 
          
         float:left;
-         width:15.85vw;
+         width:16.8vw;
          font-size: 2vh;
          height:9.86vh;      
 
@@ -464,6 +509,9 @@ ul li{
 
 cursor: pointer;
 
+}
+.tab-box a{
+    color: black;
 }
 
 .tab-box li.selected{
@@ -495,4 +543,18 @@ cursor: pointer;
     width: 80vw;
     height: 60vh;
     margin: 0 auto;
+}
+/*로그인 후 화면*/
+
+.loginsession p{
+    margin-right: auto;
+}
+.loginandsearch a{
+    color:white;
+}
+.loginsession button{
+    border-radius: 2vh;
+    width: 10vw;
+    background-color: #004593;
+    color: white;
 }

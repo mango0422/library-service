@@ -12,20 +12,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpSession;
 import lib.backend.libraryservice.Entity.Book;
 import lib.backend.libraryservice.repository.BookRepository;
 import lib.backend.libraryservice.service.BookService;
+import lib.backend.libraryservice.service.BorrowService;
 
 @Controller
 public class SearchController {
 
     BookRepository bookRepository;
     BookService bookService;
+    BorrowService borrowService;
 
-    public SearchController(BookRepository bookRepository, BookService bookService) {
+    public SearchController(BookRepository bookRepository, BookService bookService, BorrowService borrowService) {
         this.bookRepository = bookRepository;
         this.bookService = bookService;
-
+        this.borrowService = borrowService;
     }
 
     @GetMapping("/search-page")
@@ -48,7 +51,6 @@ public class SearchController {
             @RequestParam("start_year") Integer start_year,
             @RequestParam("end_year") Integer end_year,
             Model model) {
-
         // BookService를 사용하여 책 검색
         List<Book> books = bookService.searchBooks(
                 title1, title2, title3,
@@ -65,12 +67,12 @@ public class SearchController {
     }
 
     @GetMapping("/book/details/{bookId}")
-    public String showBookDetails(@PathVariable Integer bookId, Model model) {
-        // bookId를 가져와서 BookCode로 책 정보 조회
+    public String showBookDetails(@PathVariable Integer bookId, Model model, HttpSession session) {
         Book book = bookRepository.getByBookCode(bookId);
 
         // 모델에 결과를 추가하여 템플릿으로 전달
         model.addAttribute("book", book);
+        model.addAttribute("showButton", borrowService.borrowBtnCondition(bookId, session));
 
         return "book-details";
     }

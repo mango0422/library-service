@@ -1,84 +1,167 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>책 정보</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search result</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: #f2f2f2;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        
-        tr:hover {
-            background-color: #ddd;
-        }
-    </style>
-    <link type="text/css" rel="stylesheet" href ="../static/css/style.css" th:href="@{css/style.css}" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../static/css/book_details.css"
+      th:href="@{/css/book_details.css}"
+    />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const response = urlParams.get("response");
 
-<body>
+      if (response) {
+        const [statusCode, message] = response.split("|");
+
+        if (statusCode === "1") {
+          alert(message); // 1번: 로그인 팝업
+          window.location.href = "/login";
+        } else if (statusCode === "2") {
+          alert(message); // 2번: 대출 권수 초과 팝업
+          window.location.reload();
+        } else if (statusCode === "3") {
+          alert(message); // 3번: 대출 완료 팝업
+          window.location.reload();
+        }
+      }
+    </script>
+  </head>
+
+  <body>
     <div class="header">
-        <div class="tab-box">
-            <a th:href="@{/home}"><img id="gachonlogo" src ="../static/img/gachonlogo.jpg" th:src="@{img/gachonlogo.jpg}" /></a>
+      <div class="tab-box">
+        <a href="/home"
+          ><img
+            id="gachonlogo"
+            src="../static/img/gachonlogo.jpg"
+            th:src="@{/img/gachonlogo.jpg}"
+        /></a>
 
-            <ul id="tab">
-
-                <li><a th:href="@{/introduce}">도서관 소개</a></li>
-
-                <li><a th:href="@{/search-page}">검색</a></li>
-
-                <li><a th:href="@{/mypage}">대출/연장/예약</a></li>
-
-                <li><a th:href="@{/community}">커뮤니티</a></li>
-
-            </ul>
-
-        </div>
-
+        <ul id="tab">
+          <li><a th:href="@{/introduce}">도서관 소개</a></li>
+          <li><a th:href="@{/search-page}">검색</a></li>
+          <li><a th:href="@{/mypage}">마이페이지</a></li>
+          <li><a th:href="@{/community}">커뮤니티</a></li>
+        </ul>
+      </div>
     </div>
-    <h1>Search Result</h1>
-
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Publisher</th>
-            <!-- Add more columns if needed -->
-        </tr>
-        <tr th:each="book : ${book}">
-            <td th:text="${book.book_code}"></td>
-            <td th:text="${book.book_title}"></td>
-            <td th:text="${book.book_author}"></td>
-            <td th:text="${book.book_publisher}"></td>
-            <td th:text="${book.book_borrow}"></td>
-            <td th:text="${book.book_lang}"></td>
-            <td th:text="${book.book_type}"></td>
-            <td th:text="${book.book_year}"></td>
-            <!-- Add more columns if needed -->
-        </tr>
-    </table>
+    <div class="bannerbackground">
+      <div class="banner">
+        <h1>책 정보</h1>
+      </div>
+    </div>
 
     <!-- <div th:if="${book.isEmpty()}">
         <p>No results found.</p>
     </div> -->
-</body>
 
+    <div class="divProfileTitle">
+      <div class="booktitle">
+        <h2>책제목 :</h2>
+        <h2 th:text="${book.book_title}"></h2>
+      </div>
+    </div>
+
+    <div class="bookInfoTable">
+      <div id="divProfile">
+        <table
+          cellspacing="0"
+          summary="이 표는 서지상세정보를 나타내고 있습니다."
+          class="profiletable"
+        >
+          <tbody>
+            <tr>
+              <th scope="row">도서번호</th>
+              <td th:text="${book.book_code}"></td>
+            </tr>
+            <tr>
+              <th scope="row">서명</th>
+              <td th:text="${book.book_title}"></td>
+            </tr>
+            <tr>
+              <th scope="row">저자</th>
+              <td th:text="${book.book_author}"></td>
+            </tr>
+            <tr>
+              <th scope="row">출판사</th>
+              <td th:text="${book.book_publisher}"></td>
+            </tr>
+            <tr>
+              <th scope="row">언어</th>
+              <td th:text="${book.book_lang}"></td>
+            </tr>
+            <tr>
+              <th scope="row">자료유형</th>
+              <td th:text="${book.book_type}"></td>
+            </tr>
+            <tr>
+              <th scope="row">발행년도</th>
+              <td th:text="${book.book_year}"></td>
+            </tr>
+            <script th:inline="javascript">
+              /*<![CDATA[*/
+              function checkLoaned() {
+                var loan = [[${book.book_borrow}]];
+                if (loan == 0) {
+                  var loantext = document.getElementById("loanState");
+                  loantext.textContent = "대출 가능";
+                } else {
+                  var loantext = document.getElementById("loanState");
+                  loantext.textContent = "대출중";
+                }
+              }
+              checkLoaned();
+              /*]]>*/
+            </script>
+            <tr>
+              <th scope="row">대출현황</th>
+              <td
+                id="loanState"
+                th:text="${showButton == 1 ? '대출 가능' : '대출중'}"
+              ></td>
+            </tr>
+          </tbody>
+        </table>
+        <form action="/borrow" method="post">
+          <input type="hidden" name="book_code" value="hiddenValue123" />
+          <button th:if="${showButton == 1}" type="submit">버튼</button>
+        </form>
+        <div id="addtionalContent"></div>
+        <div id="divHoldingInfo">
+          <div class="holdingHeader"></div>
+          <script type="text/javascript" src="/js/search/mylibrary.js"></script>
+          <script type="text/javascript">
+            var MSG_VALID_LOGIN = "로그인 후 이용하세요.";
+            var MSG_VALID_SEND_SMS = "발송하시겠습니까?";
+            var MSG_VALID_COMPLETE_SMS = "발송되었습니다.";
+          </script>
+          <script type="text/javascript">
+            function goLocation(sub_loca, call_no) {
+              //var url = "http://www.conbiz.co.kr/gc3/container.html#"+sub_loca+"_"+call_no;
+              var url =
+                "/image/ko/location/container.html#" + sub_loca + "_" + call_no;
+              OpenWin = window.open(
+                url,
+                "open",
+                "left=100,top=100,height=760,width=820,location=1,menubar=0,resizable=0,scrollbars=0,status=0,titlebar=0,toolbar=0"
+              );
+              if (OpenWin != null) {
+                OpenWin.opener = self;
+              }
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

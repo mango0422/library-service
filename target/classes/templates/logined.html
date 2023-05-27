@@ -1,115 +1,220 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width =device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>도서 대출 시스템</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href ="../static/css/style.css" th:href="@{css/style.css}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../static/css/style.css"
+      th:href="@{css/style.css}"
+    />
     <!-- <script src="js/myscript.js"></script> -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="header">
-        <div class="tab-box">
-            <a th:href="@{/home}"><img id="gachonlogo" src ="../static/img/gachonlogo.jpg" th:src="@{img/gachonlogo.jpg}" /></a>
-            <ul id="tab">
-
-                <li><a href="/introduce">도서관 소개</a></li>
-
-                <li><a href="/search-page">검색</a></li>
-
-                <li><a href="/mypage">대출/연장/예약</a></li>
-
-                <li><a href="/community">커뮤니티</a></li>
-
-            </ul>
-        </div>
+      <div class="tab-box">
+        <img
+          id="gachonlogo"
+          src="../static/img/gachonlogo.jpg"
+          th:src="@{img/gachonlogo.jpg}"
+        />
+        <ul id="tab">
+          <li><a href="/introduce">도서관 소개</a></li>
+          <li><a href="/search-page">검색</a></li>
+          <li><a href="/mypage">마이페이지</a></li>
+          <li><a href="/community">커뮤니티</a></li>
+        </ul>
+      </div>
     </div>
-    </div>
+    <!-- </div> Remove this unnecessary closing div tag -->
+
     <div class="body">
-        <div class="loginandsearch">
-            <div class="loginbox">
-                <h1>Welcome!</h1><br/>
-                <div th:if="${session.user != null}">
-                    <p>Logged in as: <span th:text="${session.user.user_id}"></span></p>
-                    <!-- 필요한 다른 정보도 출력할 수 있습니다 -->
-                    <a href="/logout">Logout</a>
-                </div>
-            </div>
-            <div class="search">
-                <h1 id="searchtitle">통합검색</h1>
-                <div class="searchinput">
-                    <input type="text" id="searchbar" placeholder="검색어 입력">
-                    <img src ="../static/img/searchicon.png" th:src="@{img/searchicon.png}" id="searchicon" />
-                </div>
-                <img src="../static/img/gachonlibrary.jpg" th:src="@{img/gachonlibrary.jpg}"  id="libraryimg" style="width:100%; height:100%;" />
-            </div>
+      <div class="loginandsearch">
+        <div class="loginbox">
+          <h1>
+            <span th:text="${session.user.user_name}"></span>님! 반갑습니다.
+          </h1>
+          <br />
+          <div class="loginsession" th:if="${session.user != null}">
+            <!-- 필요한 다른 정보도 출력할 수 있습니다 -->
+            <button><a href="/logout">로그아웃</a></button>
+          </div>
         </div>
-        <div class="content">
-            <div class="noticeandchart">
-                <div class="tab_wrap">
-                    <div class="tab_title">
-                        <div class="notice_on">공지사항</div>
-                        <div class="gallery_off">QnA</div>
-                    </div>
-                    <div class="contents_box">
-                        <ul class="notice_letter">
-                            <li><a href="#">1번 공지사항을 써주세요</a><span>20-05-18</span></li>
-                            <li><a href="#">2번 공지사항을 써주세요</a><span>20-05-17</span></li>
-                            <li><a href="#">3번 공지사항을 써주세요</a><span>20-05-16</span></li>
-                            <li><a href="#">4번 공지사항을 써주세요</a><span>20-05-15</span></li>
-                        </ul>
-                        <ul class="gallery_img">
-                            <li><a hef="#"><img src="../static/img/thumb1.png" th:src="@{img/thumb1.png}" alt="이미지1"></a></li>
-                            <li><a hef="#"><img src="../static/img/thumb2.png" th:src="@{img/thumb2.png}" alt="이미지2"></a></li>
-                            <li><a hef="#"><img src="../static/img/thumb3.png" th:src="@{img/thumb3.png}" alt="이미지3"></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="imgdiv">
-                    <img src="../static/img/centerimg.png" th:src="@{img/centerimg.png}" id="centimg1" />
-                    <img src="../static/img/gachonuniversity.jpg" th:src="@{img/gachonuniversity.jpg}" id="centimg2" />
-
-                </div>
-                <div class="tab_wrap2">
-                    <div class="tab_title">
-                        <div class="notice_on">공지사항</div>
-                        <div class="gallery_off">QnA</div>
-                    </div>
-                    <div class="contents_box2">
-                        <ul class="notice_letter">
-                            <li><a href="#">1번 공지사항을 써주세요</a><span>20-05-18</span></li>
-                            <li><a href="#">2번 공지사항을 써주세요</a><span>20-05-17</span></li>
-                            <li><a href="#">3번 공지사항을 써주세요</a><span>20-05-16</span></li>
-                            <li><a href="#">4번 공지사항을 써주세요</a><span>20-05-15</span></li>
-                        </ul>
-                        <ul class="gallery_img">
-                            <li><a hef="#"><img src="../static/img/thumb1.png" th:src="@{img/thumb1.png}" alt="이미지1"></a></li>
-                            <li><a hef="#"><img src="../static/img/thumb2.png" th:src="@{img/thumb2.png}" alt="이미지2"></a></li>
-                            <li><a hef="#"><img src="../static/img/thumb3.png" th:src="@{img/thumb3.png}" alt="이미지3"></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="books">
-                <div class="bestbooks">
-
-                </div>
-
-            </div>
+        <div class="search">
+          <h1 id="searchtitle">통합검색</h1>
+          <div class="searchinput">
+            <input type="text" id="searchbar" placeholder="검색어 입력" />
+            <img
+              src="../static/img/searchicon.png"
+              th:src="@{img/searchicon.png}"
+              id="searchicon"
+            />
+          </div>
+          <img
+            src="../static/img/gachonlibrary.jpg"
+            th:src="@{img/gachonlibrary.jpg}"
+            id="libraryimg"
+            style="width: 100%; height: 100%"
+          />
         </div>
+      </div>
+      <div class="content">
+        <div class="noticeandchart">
+          <div class="tab_wrap">
+            <div class="tab_title">
+              <div class="notice_on">공지사항</div>
+              <div class="gallery_off">QnA</div>
+            </div>
+            <div class="contents_box">
+              <ul class="notice_letter">
+                <li>
+                  <a href="#">2023년 전자정보 박람회 후기이벤트</a
+                  ><span>23-05-18</span>
+                </li>
+                <li>
+                  <a href="#">전자자료 이용시 유의사항</a><span>23-05-17</span>
+                </li>
+                <li>
+                  <a href="#">Oxford English Dictionary 등 Oxfo..</a
+                  ><span>23-05-16</span>
+                </li>
+                <li>
+                  <a href="#">네이버 학술정보와 함께하는, 제 10회..</a
+                  ><span>23-05-15</span>
+                </li>
+              </ul>
+              <ul class="QnA">
+                <li>
+                  <a href="#">모바일 앱 비밀번호 문의</a><span>23-05-15</span>
+                </li>
+                <li>
+                  <a href="#">국외웹 DB 관련 문의드립니다</a
+                  ><span>23-05-14</span>
+                </li>
+                <li>
+                  <a href="#">도서관 소프트웨어 관련 문의드립니다</a
+                  ><span>23-05-13</span>
+                </li>
+                <li>
+                  <a href="#">기본 설치프로그램 추가 요청</a
+                  ><span>23-05-13</span>
+                </li>
+              </ul>
+              <script>
+                $(document).ready(function () {
+                  $(".notice_on").click(function () {
+                    $(".notice_letter").css("display", "flex");
+                    $(".QnA").css("display", "none");
+                    $(".notice_on").css("background", "white");
+                    $(".gallery_off").css("border-bottom-width", "1px");
+                    $(".notice_on").css("border-bottom-color", "white");
+                    $(".gallery_off").css("border-bottom-style", "solid");
+                    $(".gallery_off").css("background", "lightgray");
+                    $(".gallery_off").css("border-bottom-color", "black");
+                  });
+                  $(".gallery_off").click(function () {
+                    $(".notice_letter").css("display", "none");
+                    $(".QnA").css("display", "flex");
+                    $(".notice_on").css("background", "lightgray");
+                    $(".gallery_off").css("border-bottom-color", "white");
+                    $(".gallery_off").css("background", "white");
+                    $(".notice_on").css("border-bottom-width", "1px");
+                    $(".notice_on").css("border-bottom-color", "black");
+                    $(".notice_on").css("border-bottom-style", "solid");
+                  });
+                });
+              </script>
+            </div>
+          </div>
+          <div class="imgdiv">
+            <img
+              src="./centerimg.png"
+              id="centimg1"
+              th:src="@{img/centerimg.png}"
+            />
+            <img
+              src="./gachonuniversity.jpg"
+              th:src="@{img/gachonuniversity.jpg}"
+              id="centimg2"
+            />
+          </div>
+          <div class="contents_box_wrap">
+            <div class="tab_wrap2">
+              <div class="tab_title">
+                <div class="loanandreservetabletitle">대출/예약 현황</div>
+              </div>
 
+              <div class="contents_box2">
+                <ul class="loanreserveprofile">
+                  <li>
+                    <h5>누적 대출 권수 :</h5>
+                    <h5></h5>
+                  </li>
+                  <li>
+                    <h5>오늘 대출 권수 :</h5>
+                    <h5></h5>
+                  </li>
+                  <li>
+                    <h5>오늘 예약 권수 :</h5>
+                    <h5></h5>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tab_wrap3">
+              <div class="tab_title">
+                <div class="Sitesrelatedtoacademicinformation">
+                  학술 정보 관련 사이트
+                </div>
+              </div>
+              <div class="contents_box3">
+                <ul class="loanreserveprofile">
+                  <li>
+                    <h5>누적 대출 권수 :</h5>
+                    <h5></h5>
+                  </li>
+                  <li>
+                    <h5>오늘 대출 권수 :</h5>
+                    <h5></h5>
+                  </li>
+                  <li>
+                    <h5>오늘 예약 권수 :</h5>
+                    <h5></h5>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="books">
+          <div class="bestbooks"></div>
+        </div>
+      </div>
     </div>
-
-    <div class="footer">
-
-    </div>
-</body>
-
+  </body>
 </html>
+
+<!--
+
+  <p>
+              예약한 권수:<span
+                th:text="${session.user.reserved_number}"
+              ></span>
+            </p>
+            <p>
+              대출한 권수:<span th:text="${session.user.loaned_number}"></span>
+            </p>
+-->

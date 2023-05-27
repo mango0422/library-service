@@ -4,6 +4,9 @@
     margin: 0;
     padding: 0;
 }
+a {
+    text-decoration: none;
+  }
   /*기본 설정*/
   body{
 
@@ -14,12 +17,15 @@
 .header{
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 84vw;
     height: 12vh;
     background-color: #ffffff;
     font-family: '맑은 고딕' 돋움; 
     color:#333;
     margin:0 auto;
+}
+.header a{
+    color: black;
 }
 
 /*탭 메뉴 설정*/
@@ -34,12 +40,12 @@ ul li{
 .tab-box{
     margin: 0 auto;
 
-    width:80vw;
+    width:84vw;
 
 }
 
 #gachonlogo {
-width:15.85vw;
+width:16.8vw;
 height:9vh;
 display:flex;
 position:relative;
@@ -54,7 +60,7 @@ top: 1.5vh;
 
     
    float:left;
-    width:15.85vw;
+    width:16.8vw;
     font-size: 2vh;
     height:9.86vh;      
 
@@ -105,7 +111,7 @@ cursor: pointer;
 }
 .banner{
     display: flex;
-    width: 80vw;
+    width: 84vw;
     height: 10vh;
     margin: 0 auto;
 }
@@ -121,7 +127,7 @@ cursor: pointer;
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    width: 80vw;
+    width: 84vw;
     margin-top: 5vh;
     
 }
@@ -145,8 +151,8 @@ cursor: pointer;
 .searchbox{
     display: flex;
     flex-direction: column;
-    width: 80vw;
-    height: 25vw;
+    width: 84vw;
+    height: 40vh;
     background-color: white;
     margin-left: auto;
     margin-right:auto;
@@ -238,4 +244,32 @@ cursor: pointer;
     margin: 0 auto;
     background-color: rgb(228, 231, 250);
     border: 1px solid black;
+}
+/* 검색 결과 테이블*/
+table {
+    width: 84vw;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #004593;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+.searchtitlebelowbanner{
+    margin-top: 5vh;
 }

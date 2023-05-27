@@ -1,62 +1,101 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
+  <head>
     <title>회원 가입</title>
     <script language="javascript">
-        function checkPasswords() {
-            var password1 = document.getElementById("password1").value;
-            var password2 = document.getElementById("password2").value;
+      function checkPasswords() {
+        var password1 = document.getElementById("password1").value;
+        var password2 = document.getElementById("password2").value;
 
-            if(password1 == null || (password1 == password2 == null)){
-                document.getElementById("password-confirm-message").innerHTML = "비밀번호를 입력하세요";
-            } else if(password2 == null){
-                document.getElementById("password-confirm-message").innerHTML = "비밀번호 재확인 칸을 확인하세요";
-            } else if (password1 == password2 && password2 != null) {
-                document.getElementById("password-confirm-message").innerHTML = "비밀번호가 일치합니다.";
-            } else {
-                document.getElementById("password-confirm-message").innerHTML = "비밀번호가 일치하지 않습니다.";
-            }
+        if (password1 == null || (password1 == password2) == null) {
+          document.getElementById("password-confirm-message").innerHTML =
+            "비밀번호를 입력하세요";
+        } else if (password2 == null) {
+          document.getElementById("password-confirm-message").innerHTML =
+            "비밀번호 재확인 칸을 확인하세요";
+        } else if (password1 == password2 && password2 != null) {
+          document.getElementById("password-confirm-message").innerHTML =
+            "비밀번호가 일치합니다.";
+        } else {
+          document.getElementById("password-confirm-message").innerHTML =
+            "비밀번호가 일치하지 않습니다.";
         }
+      }
 
-        document.getElementById("checkPasswords").addEventListener("click", checkPasswords);
+      document
+        .getElementById("checkPasswords")
+        .addEventListener("click", checkPasswords);
     </script>
-    <link type="text/css" rel="stylesheet" href ="../static/css/style.css" th:href="@{css/style.css}" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../static/css/signupstyle.css"
+      th:href="@{css/signupstyle.css}"
+    />
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+  </head>
 
-<body>
+  <body>
     <div class="header">
-        <div class="tab-box">
-            <a th:href="@{/home}"><img id="gachonlogo" src ="../static/img/gachonlogo.jpg" th:src="@{img/gachonlogo.jpg}" /></a>
+      <div class="tab-box">
+        <a href="/home"
+          ><img
+            id="gachonlogo"
+            src="../static/img/gachonlogo.jpg"
+            th:src="@{img/gachonlogo.jpg}"
+        /></a>
 
-            <ul id="tab">
+        <ul id="tab">
+          <li><a th:href="@{/introduce}">도서관 소개</a></li>
 
-                <li><a th:href="@{/introduce}">도서관 소개</a></li>
+          <li><a th:href="@{/search-page}">검색</a></li>
 
-                <li><a th:href="@{/search-page}">검색</a></li>
+          <li><a th:href="@{/mypage}">마이페이지</a></li>
 
-                <li><a th:href="@{/mypage}">대출/연장/예약</a></li>
-
-                <li><a th:href="@{/community}">커뮤니티</a></li>
-
-            </ul>
-
-        </div>
-
+          <li><a th:href="@{/community}">커뮤니티</a></li>
+        </ul>
+      </div>
     </div>
-    <h1>회원 가입</h1>
-    <form action="/signup" method="post">
-        <input type="text" name="user_id" placeholder="사용자 ID"><br />
-        <input type="password" id="password1" name="user_pw" placeholder="비밀번호"><br />
-        <input type="password" id="password2" name="user_pw2" placeholder="비밀번호 확인">
-        <input type="button" value="비밀번호 확인" onclick="checkPasswords()"/>
-        <span id="password-confirm-message"></span><br/>
-        <input type="text" name="user_name" placeholder="사용자 이름"><br />
-        <input type="email" name="email" placeholder="이메일"><br />
-        <input type="date" name="birthdate" placeholder="생년월일"><br />
-        <input type="submit" value="가입">
+    <form action="/signup" method="POST" class="signupForm">
+      <h2>회원가입</h2>
+      <div class="textForm">
+        <input name="user_id" type="text" class="id" placeholder="아이디" />
+      </div>
+      <div class="textForm">
+        <input
+          name="user_pw"
+          type="password"
+          class="pw"
+          placeholder="비밀번호"
+        />
+      </div>
+      <div class="textForm">
+        <input
+          name="user_pw2"
+          type="password"
+          class="pw"
+          placeholder="비밀번호 확인"
+        />
+      </div>
+      <div class="textForm">
+        <input name="user_name" type="text" class="name" placeholder="이름" />
+      </div>
+      <div class="textForm">
+        <input name="email" type="text" class="email" placeholder="이메일" />
+      </div>
+      <div class="textForm">
+        <input
+          type="date"
+          class="birthdate"
+          name="birthdate"
+          max="2023-05-31"
+          min="1900-01-01"
+        />
+      </div>
+      <input type="submit" class="btn" value="가 입 하 기" />
     </form>
-</body>
-
+  </body>
 </html>

@@ -13,4 +13,7 @@ import java.util.List;
 public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query("SELECT b FROM Book b WHERE b.book_code = :book_code")
     Book getByBookCode(@Param("book_code") Integer book_code);
+
+    @Query("SELECT b.book_borrow FROM Book b WHERE b.book_code = :book_code")
+    Integer bookBorrow(@Param("book_code") Integer book_code);
 }

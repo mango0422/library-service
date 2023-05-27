@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import jakarta.persistence.Query;
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import jakarta.persistence.EntityManager;
+import lib.backend.libraryservice.Entity.Book;
 import lib.backend.libraryservice.Entity.Borrow;
 import lib.backend.libraryservice.Entity.User;
 import lib.backend.libraryservice.repository.BorrowRepository;
@@ -31,43 +33,29 @@ public class BorrowService {
     @Autowired
     private EntityManager entityManager;
 
-    public List<Borrow> executeQuery(String query) {
+    public List<Book> executeQuery(String query) {
         Query nativeQuery = entityManager.createNativeQuery(query, Borrow.class);
-        List<Borrow> borrows = nativeQuery.getResultList();
-        return borrows;
+        List<Book> bookborrows = nativeQuery.getResultList();
+        return bookborrows;
     }
 
     // 유저 코드를 이용하여 에약한 도서 목록 출력하기.
-    public List<Borrow> findByID(Integer user_num) {
-        StringBuilder queryBuilder = new StringBuilder("SELECT * FROM borrow WHERE user_num=");
-        queryBuilder.append(user_num);
-        String query = queryBuilder.toString();
-
-        List<Borrow> borrowLists = executeQuery(query);
-
-        return borrowLists;
-    }
-
-    // 도서 예약 가능 예상 날짜
-    public Date expectedLoanDate(Integer book_code, Integer user_num) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(borrowRepository.getEndDateByUserNumAndBookCode(book_code, user_num));
-        calendar.add(Calendar.DATE, 14);
-        Date updatedDate = calendar.getTime();
-        return updatedDate;
+    public List<Book> findByID(Integer user_num) {
+        return bookRepository.findBookWithBorrowByUserNum(user_num);
     }
 
     // 대출 기능
+    @Transactional
     public void borrowFunc(Integer user_num, Integer book_code) {
-        Date date1 = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date1);
-        calendar.add(Calendar.DAY_OF_MONTH, 14);
-        Date date2 = calendar.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String startDateStr = sdf.format(date1);
-        String endDateStr = sdf.format(date2);
-        borrowRepository.bookBorrowInsert(book_code, user_num, startDateStr, endDateStr);
+        borrowRepository.doBorrow(book_code, user_num);
+        bookRepository.updateBookBorrowByBookCode(book_code, 1);
+    }
+
+    // 반납 기능
+    @Transactional
+    public void endborrowFunc(Integer user_num, Integer book_code) {
+        borrowRepository.endBorrow(book_code, user_num);
+        bookRepository.updateBookBorrowByBookCode(book_code, 0);
     }
 
     // 대출 여부 확인

@@ -1,8 +1,6 @@
 package lib.backend.libraryservice.Entity;
 
-import com.google.cloud.Date;
-
-// import java.sql.Date;
+import java.util.Date;
 
 import java.io.Serializable;
 import jakarta.persistence.Column;

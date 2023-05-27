@@ -1,6 +1,7 @@
 package lib.backend.libraryservice.service;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +10,22 @@ import org.springframework.stereotype.Service;
 import jakarta.persistence.Query;
 import jakarta.persistence.EntityManager;
 import lib.backend.libraryservice.Entity.Reservation;
+import lib.backend.libraryservice.repository.BookRepository;
+import lib.backend.libraryservice.repository.BorrowRepository;
 import lib.backend.libraryservice.repository.ReservationRepository;
 
 @Service
 public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
+    private BookRepository bookRepository;
+    private BorrowRepository borrowRepository;
 
-    public ReservationService(ReservationRepository reservationRepository) {
+    public ReservationService(ReservationRepository reservationRepository, BookRepository bookRepository,
+            BorrowRepository borrowRepository) {
         this.reservationRepository = reservationRepository;
+        this.bookRepository = bookRepository;
+        this.borrowRepository = borrowRepository;
     }
 
     // 유저 고유번호로 예약한 리스트 꺼내기.
@@ -47,5 +55,14 @@ public class ReservationService {
         Query nativeQuery = entityManager.createNativeQuery(query, Reservation.class);
         List<Reservation> borrows = nativeQuery.getResultList();
         return borrows;
+    }
+
+    // 도서 예약 가능 예상 날짜
+    public Date expectedBorrowDate(Integer book_code, Integer user_num) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(borrowRepository.getEndDateByUserNumAndBookCode(book_code, user_num));
+        calendar.add(Calendar.DATE, 14);
+        Date updatedDate = calendar.getTime();
+        return updatedDate;
     }
 }

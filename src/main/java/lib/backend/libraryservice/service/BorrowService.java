@@ -51,12 +51,12 @@ public class BorrowService {
         bookRepository.updateBookBorrowByBookCode(book_code, 1);
     }
 
-    // 반납 기능
-    @Transactional
-    public void endborrowFunc(Integer book_code) {
-        borrowRepository.endBorrow(book_code);
-        bookRepository.updateBookBorrowByBookCode(book_code, 0);
-    }
+    // // 반납 기능
+    // @Transactional
+    // public void endborrowFunc(Integer book_code) {
+    //     borrowRepository.endBorrow(book_code);
+    //     bookRepository.updateBookBorrowByBookCode(book_code, 0);
+    // }
 
     // 대출 여부 확인
     public Integer checkBorrow(Integer book_code) {

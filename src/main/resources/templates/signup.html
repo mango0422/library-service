@@ -2,30 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>회원 가입</title>
-    <script language="javascript">
-      function checkPasswords() {
-        var password1 = document.getElementById("password1").value;
-        var password2 = document.getElementById("password2").value;
-
-        if (password1 == null || (password1 == password2) == null) {
-          document.getElementById("password-confirm-message").innerHTML =
-            "비밀번호를 입력하세요";
-        } else if (password2 == null) {
-          document.getElementById("password-confirm-message").innerHTML =
-            "비밀번호 재확인 칸을 확인하세요";
-        } else if (password1 == password2 && password2 != null) {
-          document.getElementById("password-confirm-message").innerHTML =
-            "비밀번호가 일치합니다.";
-        } else {
-          document.getElementById("password-confirm-message").innerHTML =
-            "비밀번호가 일치하지 않습니다.";
-        }
-      }
-
-      document
-        .getElementById("checkPasswords")
-        .addEventListener("click", checkPasswords);
-    </script>
     <link
       type="text/css"
       rel="stylesheet"
@@ -49,20 +25,32 @@
         /></a>
 
         <ul id="tab">
-          <li><a th:href="@{/introduce}">도서관 소개</a></li>
-
-          <li><a th:href="@{/search-page}">검색</a></li>
-
-          <li><a th:href="@{/mypage}">마이페이지</a></li>
-
-          <li><a th:href="@{/community}">커뮤니티</a></li>
+          <li><a href="/introduce">도서관 소개</a></li>
+          <li><a href="/search-page">검색</a></li>
+          <li
+            th:unless="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a href="/mypage">마이페이지</a>
+          </li>
+          <li><a href="/community">커뮤니티</a></li>
+          <li
+            th:if="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a th:href="@{/managePage}">관리 페이지</a>
+          </li>
         </ul>
       </div>
     </div>
     <form action="/signup" method="POST" class="signupForm">
       <h2>회원가입</h2>
       <div class="textForm">
-        <input name="user_id" type="text" class="id" placeholder="아이디" />
+        <input
+          name="user_id"
+          type="text"
+          class="id"
+          placeholder="아이디"
+          required
+        />
       </div>
       <div class="textForm">
         <input
@@ -70,6 +58,7 @@
           type="password"
           class="pw"
           placeholder="비밀번호"
+          required
         />
       </div>
       <div class="textForm">
@@ -78,13 +67,26 @@
           type="password"
           class="pw"
           placeholder="비밀번호 확인"
+          required
         />
       </div>
       <div class="textForm">
-        <input name="user_name" type="text" class="name" placeholder="이름" />
+        <input
+          name="user_name"
+          type="text"
+          class="name"
+          placeholder="이름"
+          required
+        />
       </div>
       <div class="textForm">
-        <input name="email" type="text" class="email" placeholder="이메일" />
+        <input
+          name="email"
+          type="email"
+          class="email"
+          placeholder="이메일"
+          required
+        />
       </div>
       <div class="textForm">
         <input
@@ -93,6 +95,7 @@
           name="birthdate"
           max="2023-05-31"
           min="1900-01-01"
+          required
         />
       </div>
       <input type="submit" class="btn" value="가 입 하 기" />

@@ -1,133 +1,142 @@
 @charset "UTF-8";
-*{
+
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-  /*기본 설정*/
-  body{
+/*기본 설정*/
+body {
 
     text-align: center;
     overflow: scroll;
 }
-a{
+
+a {
     text-decoration: none;
 }
-.header{
+
+.header {
     display: flex;
     flex-direction: row;
     width: 84vw;
     height: 12vh;
     background-color: #ffffff;
-    font-family: '맑은 고딕' 돋움; 
-    color:#333;
-    margin:0 auto;
+    font-family: '맑은 고딕' 돋움;
+    color: #333;
+    margin: 0 auto;
 }
 
+.header a {
+    color: black;
+}
 
 /*탭 메뉴 설정*/
 
+ul li {
 
-ul li{
-        
     list-style-type: none;
 
 }
 
-.tab-box{
+.tab-box {
     margin: 0 auto;
 
-    width:84vw;
+    width: 84vw;
 
 }
 
 #gachonlogo {
-width:16.8vw;
-height:9vh;
-display:flex;
-position:relative;
-left:0;
-float:left;
-top: 1.5vh;
+    width: 16.8vw;
+    height: 9vh;
+    display: flex;
+    position: relative;
+    left: 0;
+    float: left;
+    top: 1.5vh;
 }
 
 
 
-.tab-box li{
+.tab-box li {
 
-    
-   float:left;
-    width:16.8vw;
+
+    float: left;
+    width: 16.8vw;
     font-size: 2vh;
-    height:9.86vh;      
+    height: 9.86vh;
 
-    line-height:9.03vh;          
+    line-height: 9.03vh;
 
-   /* 중앙정렬 */
+    /* 중앙정렬 */
     text-align: center;
 
     background-color: hsl(0, 0%, 100%);
 
-    border-radius:0.21vh 0.14vw 0 0;
+    border-radius: 0.21vh 0.14vw 0 0;
 
-    
-    
 
-cursor: pointer;
+
+
+    cursor: pointer;
 
 }
 
-.tab-box li.selected{
+.tab-box li.selected {
 
     background-color: orange;
 
 }
 
-.tab-view{
+.tab-view {
 
-    width:23.53vw;
+    width: 23.53vw;
 
-    height:6.94vh;
+    height: 6.94vh;
 
     line-height: 6.94vh;
 
     border: 1px solid gray;
 
-    text-align:center;
+    text-align: center;
 
-    margin-top:-0.07vh;
+    margin-top: -0.07vh;
 
 }
+
 /*배너*/
-.bannerbackground{
+.bannerbackground {
     display: flex;
     height: 10vh;
     margin: 0 auto;
     background-color: #004593;
-    
+
 }
-.banner{
+
+.banner {
     display: flex;
     width: 84vw;
     height: 10vh;
     margin: 0 auto;
 }
-.banner h1{
+
+.banner h1 {
     font-size: 4.5vh;
-    margin-left:2vw ;
+    margin-left: 2vw;
     margin-top: 2vh;
     color: white;
 }
 
 /*대출 */
-.loan{
+.loan {
     display: flex;
     flex-direction: column;
     width: 84vw;
     margin: 0 auto;
 }
-.loantitle{
+
+.loantitle {
     display: flex;
     flex-direction: row;
     width: 84vw;
@@ -137,20 +146,23 @@ cursor: pointer;
 
 
 
-.loantitle button{
+.loantitle button {
     background-color: white;
     border-left: 0;
     border-right: #004593 solid 2px;
     border-top: #004593 solid 2px;
     border-bottom: 0;
 }
-.loantitle #loanbtn{
+
+.loantitle #loanbtn {
     border-left: #004593 solid 2px;
 }
-.loantitle a{
+
+.loantitle a {
     color: black;
 }
-.search{
+
+.search {
     display: flex;
     flex-direction: row;
     width: 84vw;
@@ -158,42 +170,50 @@ cursor: pointer;
     margin: 0 auto;
     background-color: aliceblue;
 }
-.searchparameter{
+
+.searchparameter {
     display: flex;
     flex-direction: row;
     height: 3.5vh;
     margin-left: auto;
-    margin-right:auto;
+    margin-right: auto;
     margin-top: 8vh;
 }
-.searchparameter h3{
-   
-   font-size: 2.5vh;
-   padding:0 0 0 8px;
-   margin: 0;
+
+.searchparameter h3 {
+
+    font-size: 2.5vh;
+    padding: 0 0 0 8px;
+    margin: 0;
 }
-.searchparameter select{
+
+.searchparameter select {
     margin-left: 1vw;
     font-size: 2.5vh;
     width: 6vw;
 }
-.searchparameter #updown{
+
+.searchparameter #updown {
     width: 9vw;
 }
-.searchparameter #fronttext{
+
+.searchparameter #fronttext {
     width: 11vw;
     margin-left: 0.5vw;
 }
-.searchparameter input{
+
+.searchparameter input {
     margin-left: 0.5vw;
     width: 6vw;
 }
-.searchparameter button{
+
+.searchparameter button {
     width: 6vw;
     font-size: 2vh;
     margin-left: 0.5vw;
 }
-.pagedata{
+
+.pagedata {
     display: flex;
     flex-direction: row;
     width: 84vw;
@@ -201,34 +221,39 @@ cursor: pointer;
     margin: 0 auto;
     margin-top: 3vh;
 }
-.loanedbooktable{
+
+.loanedbooktable {
     display: flex;
     width: 84vw;
     margin: 0 auto;
 }
-.loanedbooktable table{
+
+.loanedbooktable table {
     width: 84vw;
     border: 1px solid black;
-    
+
 }
-.submitbutton{
+
+.submitbutton {
     display: flex;
     flex-direction: row;
     width: 84vw;
     margin-top: 5vh;
-    margin-left:auto;
+    margin-left: auto;
     margin-right: auto;
 }
-.submitbutton button{
-    margin:0 auto;
+
+.submitbutton button {
+    margin: 0 auto;
 }
-.reservedbooktable{
+
+.reservedbooktable {
     display: none;
     width: 84vw;
     margin: 0 auto;
 }
 
-.reservedbooktable table{
+.reservedbooktable table {
     width: 84vw;
     border: 1px solid black;
 }

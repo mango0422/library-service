@@ -1,33 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link type="text/css" rel="stylesheet" href ="../static/css/style.css" th:href="@{css/style.css}" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width =device-width, initial-scale=1.0" />
+    <title>커뮤니티</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../static/css/notice_page.css"
+      th:href="@{css/notice_page.css}"
+    />
+    <!-- <script src="js/myscript.js"></script> -->
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../static/js/notice_page_paging.js"
+      th:src="@{js/notice_page_paging.js}"
+    ></script>
+  </head>
+
+  <body>
     <div class="header">
-        <div class="tab-box">
-            <a th:href="@{/home}"><img id="gachonlogo" src ="../static/img/gachonlogo.jpg" th:src="@{img/gachonlogo.jpg}" /></a>
+      <div class="tab-box">
+        <a href="/home"
+          ><img
+            id="gachonlogo"
+            src="../static/img/gachonlogo.jpg"
+            th:src="@{/img/gachonlogo.jpg}"
+        /></a>
 
-            <ul id="tab">
-
-                <li><a th:href="@{/introduce}">도서관 소개</a></li>
-
-                <li><a th:href="@{/search-page}">검색</a></li>
-
-                <li><a th:href="@{/mypage}">대출/연장/예약</a></li>
-
-                <li><a th:href="@{/community}">커뮤니티</a></li>
-
-            </ul>
-
-        </div>
-
+        <ul id="tab">
+          <li><a href="/introduce">도서관 소개</a></li>
+          <li><a href="/search-page">검색</a></li>
+          <li
+            th:unless="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a href="/mypage">마이페이지</a>
+          </li>
+          <li><a href="/community">커뮤니티</a></li>
+          <li
+            th:if="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a th:href="@{/managePage}">관리 페이지</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <h1>커뮤니티 만들어?</h1>
-</body>
+    <div class="bannerbackground">
+      <div class="banner">
+        <h1>공지사항</h1>
+      </div>
+    </div>
+
+    <section class="ftco-section" style="height: 1000px">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">공지사항</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- page count -->
+            <div id="page_info"></div>
+            <!-- board -->
+            <div class="table-wrap">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>no.</th>
+                    <th>title</th>
+                    <th>date</th>
+                  </tr>
+                </thead>
+                <tbody id="html_list"></tbody>
+              </table>
+              <!-- pagination -->
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center" id="paging"></ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

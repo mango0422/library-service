@@ -17,51 +17,51 @@ import lombok.Setter;
 public class Book implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_code")
-    private Integer book_code;
+    @Column(name = "code")
+    private Integer code;
 
-    @Column(name = "book_title")
-    private String book_title;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "book_author")
-    private String book_author;
+    @Column(name = "author")
+    private String author;
 
-    @Column(name = "book_publisher")
-    private String book_publisher;
+    @Column(name = "publisher")
+    private String publisher;
 
-    @Column(name = "book_borrow")
-    private Integer book_borrow;
+    @Column(name = "borrow")
+    private Integer borrow;
 
-    @Column(name = "book_lang")
-    private String book_lang;
+    @Column(name = "lang")
+    private String lang;
 
-    @Column(name = "book_type")
-    private String book_type;
+    @Column(name = "type")
+    private String type;
 
-    @Column(name = "book_year")
-    private Integer book_year;
+    @Column(name = "year")
+    private Integer year;
 
-    @Column(name = "book_summary")
-    private String book_summary;
+    @Column(name = "summary")
+    private String summary;
 
-    @Column(name = "book_ISBN")
-    private String book_ISBN;
+    @Column(name = "ISBN")
+    private String ISBN;
 
     // 생성자
     public Book() {
     }
 
-    public Book(Integer book_code, String book_title, String book_author, String book_publisher, Integer book_borrow,
-            String book_lang, String book_type, Integer book_year, String book_summary, String book_ISBN) {
-        this.book_code = book_code;
-        this.book_title = book_title;
-        this.book_author = book_author;
-        this.book_publisher = book_publisher;
-        this.book_borrow = book_borrow;
-        this.book_lang = book_lang;
-        this.book_type = book_type;
-        this.book_year = book_year;
-        this.book_summary = book_summary;
-        this.book_ISBN = book_ISBN;
+    public Book(Integer code, String title, String author, String publisher, Integer borrow,
+            String lang, String type, Integer year, String summary, String ISBN) {
+        this.code = code;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.borrow = borrow;
+        this.lang = lang;
+        this.type = type;
+        this.year = year;
+        this.summary = summary;
+        this.ISBN = ISBN;
     }
 }

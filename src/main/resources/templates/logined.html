@@ -10,12 +10,7 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="../static/css/style.css"
-      th:href="@{css/style.css}"
-    />
+    <link type="text/css" th:href="@{/css/style.css}" rel="stylesheet" />
     <!-- <script src="js/myscript.js"></script> -->
     <script
       type="text/javascript"
@@ -26,16 +21,26 @@
   <body>
     <div class="header">
       <div class="tab-box">
-        <img
-          id="gachonlogo"
-          src="../static/img/gachonlogo.jpg"
-          th:src="@{img/gachonlogo.jpg}"
-        />
+        <a href="/home"
+          ><img
+            id="gachonlogo"
+            src="../static/img/gachonlogo.jpg"
+            th:src="@{/img/gachonlogo.jpg}"
+        /></a>
         <ul id="tab">
           <li><a href="/introduce">도서관 소개</a></li>
           <li><a href="/search-page">검색</a></li>
-          <li><a href="/mypage">마이페이지</a></li>
+          <li
+            th:unless="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a href="/mypage">마이페이지</a>
+          </li>
           <li><a href="/community">커뮤니티</a></li>
+          <li
+            th:if="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a th:href="@{/managePage}">관리 페이지</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -206,15 +211,3 @@
     </div>
   </body>
 </html>
-
-<!--
-
-  <p>
-              예약한 권수:<span
-                th:text="${session.user.reserved_number}"
-              ></span>
-            </p>
-            <p>
-              대출한 권수:<span th:text="${session.user.loaned_number}"></span>
-            </p>
--->

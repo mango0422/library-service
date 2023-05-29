@@ -1,0 +1,1652 @@
+@charset "UTF-8";
+  /*기본 설정*/
+  body{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    overflow: scroll;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    height: 12vh;
+    background-color: #ffffff;
+    font-family: '맑은 고딕' 돋움; 
+    color:#333;
+    margin:0 auto;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    margin: 0 auto;
+}
+.content{
+    display:flex;
+    flex-direction: column;
+    position:relative;
+    width: 80vw;
+    height:50vh;
+    margin:0 auto;
+}
+.loginandsearch{
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    height:30vh;
+    background-color: #ffffff;
+    margin:0 auto;
+}
+.footer{
+    display:flex;
+    width: 80vw;
+    height: 4.6948vh;
+    background-color: #F8CBAD;
+    margin: 0 auto;
+}
+
+/*검색바*/
+#libraryimg{
+    position:absolute;
+    left: 0vw;
+    padding:1px;
+}
+
+.search {
+  position: relative; 
+  width: 63.8967vw;
+
+}
+#searchtitle{
+    position:absolute;
+    color:rgb(255, 255, 255);
+    font-size: 2vh;
+    left: 8.37vw;
+    top: 17.1vh;
+    z-index: 1;
+}
+#searchicon {
+    position:absolute;
+    z-index: 1;
+    top: 20.9vh;
+    right: 5.6vw;
+    height: 1.9vh;
+    width: 1.1vw;
+}
+
+#glass {
+    position:absolute;
+    top:2.43vh;
+    left:8.51vw;
+    width:1.4vw;
+
+}
+img {
+  margin: 0;
+
+}
+.searchinput{
+    position: relative;
+    z-index: 2;
+}
+
+#searchbar {
+    width:46.51vw;
+    height: 4.1vh;
+    position:absolute;
+    top:20vh;
+    left:8.37vw;
+    border:0.21vw solid orange;
+    font-size: 0.65vw;
+    padding: 0.69vh 0.56vw;
+    border-radius: 0.9vw;
+}
+
+/*공지사항 설정*/        
+.noticeandchart{
+    display: flex;
+    flex-direction: row;
+}
+ *{
+    padding: 0;
+    margin: 0;
+    color: #333333;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.tab_wrap{
+    width: 30vw;
+    height: 30vh;
+    padding: 0.47vw;
+    border: 0.13vw solid #004593;
+    position: relative;
+    
+}
+.tab_wrap2{
+    width: 30vw;
+    height: 30vh;
+    padding: 0.47vw;
+    border: 0.13vw solid #004593;
+    position: relative;
+    left: 0vw;
+}
+.tab_title{
+    position: absolute;
+    width: 30vw;
+    font-size: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+.notice_on{
+    display: inline-block;
+    width: 5vw;
+    height: 2.08vh;
+    line-height: 2.08vh;
+    text-align: center;
+    font-size: 0.56vh;
+    background: white;
+    border: 1px solid grey;
+    border-bottom: none;
+    background: white;
+    z-index: 3;
+}
+.notice_off{
+    display: inline-block;
+    width: 3.72vw;
+    height: 2.08vh;
+    line-height: 2.08vh;
+    text-align: center;
+    font-size: 0.56vw;
+    background: lightgrey;
+    border: 1px solid grey;
+    z-index: 3;
+}
+
+.gallery_off{
+    display: inline-block;
+    width: 3.72vw;
+    height: 2.08vh;
+    line-height: 2.08vh;
+    text-align: center;
+    font-size: 0.56vw;
+    background: lightgrey;
+    border-top: 1px solid grey;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+.gallery_on{
+    display: inline-block;
+    width: 3.72vw;
+    height: 2.08vh;
+    line-height: 2.08vh;
+    text-align: center;
+    font-size: 0.56vw;
+    background: white;
+    border-top: 1px solid grey;
+    border-right: 1px solid grey;
+    border-bottom: none;
+}
+.contents_box,.contents_box2{
+    position: relative;
+    margin-top: 2.01vh;
+    width: 28.4vw;
+    height: 26vh;
+    border: 1px solid grey;
+    z-index: 1;
+}
+.notice_letter{
+    display: block;
+    padding: 1vw;
+    width: 28vw;
+}
+.notice_letter>li{
+    line-height: 1.88vh;
+    font-size: 0.9rem;
+}
+.notice_letter>li>a{
+    float: left;
+    font-size: 2vh;
+}
+.notice_letter>li>span{
+    float: right;
+}
+
+.gallery_img{
+    display: none; /*활성시 flex*/
+    justify-content: space-between; 
+    padding: 10px;
+    width: 16.51vw;
+    height: 8.68vh;
+    font-size: 0;
+}
+.gallery_img>li{
+    display: inline-block;
+    overflow: hidden;
+    background: black;
+    width: 4.65vw;
+    height: 6.94vh;
+}
+
+.gallery_img>li>a>img{
+    width: 4.65vw;
+    height: 6.94vh;
+}
+/*가운데 이미지*/
+.imgdiv{
+    width: 20vw;
+    height: 30vh;
+}
+#centimg1{
+    
+    width: 20vw;
+    height: 15vh;
+}
+#centimg2{
+    width: 20vw;
+    height: 15vh;
+}
+/*로그인 창 설정*/
+#loginlibrary {
+    position:relative;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+}
+
+.loginbox{
+    display:flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 30vh;
+    border-left: 0.14vw solid  #004593;
+    border-right: 0.14vw solid  #004593;
+    padding: 1.74vh 0.7vw;
+    box-sizing: border-box;
+    
+}
+.loginbox h1{
+    width:100%;
+    height: 2.78vh;
+    font-size: 1.3vw;
+    color:#004593;
+    border-bottom: 0.05vw solid #004593;
+    padding-left:1.86vw;
+    background-image:url(images/titleIcon.gif); 
+    background-repeat: no-repeat;
+    background-position: 0.21vh 0.23vw;
+}
+.putid{
+    left: 1.6vw;
+    margin-top:2vh;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height:3vh;
+}
+.putpw{
+    left: 1.6vw;
+    margin-top:1vh;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height:3vh;
+}
+#loginid  {
+    width:9.3vw; 
+    height:1.74vh;
+    border:0.05vw solid #999;
+    box-sizing:border-box;
+    margin-bottom:0.69vh;
+    position: absolute;
+    left: 5vw;
+}
+#loginpw  {
+    width:9.3vw; 
+    height:1.74vh;
+    border:0.05vw solid #999;
+    box-sizing:border-box;
+    margin-bottom:0.69vh;
+    position: absolute;
+    left: 5vw;
+}
+.labelid{
+    display: flex;
+    font-size:1.2vmin;
+    color:#666;
+    margin-left:0.7vw;
+    height:2vh;
+
+}
+.labelpw{
+    font-size:1.2vmin;
+    color:#666;
+    margin-left:0.7vw;
+    position:relative;
+}
+.chk{
+    margin:1vw;
+    display:flex;
+    width: 19vw;
+    height:2.78vh;
+    box-sizing:border-box;
+    line-height:0.69vh;
+    text-align:center;
+    margin-bottom:1.39vh;
+    position:relative;
+    left: 1.1vw;
+
+}
+.chk label{
+    font-size:0.56vw;
+    color:#999;
+    position:relative;
+    top: 0.6vw;
+}
+#pwchk{
+    margin-left:0.5vw;
+    margin-right: 0.5vw;
+    width: auto;
+}
+#idchk{
+    margin-right:0.5vw;
+    width: auto;
+}
+.searchidpw{
+    
+    width:18vw;
+    box-sizing:border-box;
+    line-height:2.78vh;
+    text-align:center;
+    margin-bottom:0.7vh;
+    display:flex;
+    flex-direction: column;
+}
+.searchidpw span{
+    font-size:0.51vw;
+    color:#999;
+    position: relative;
+}
+.searchidpw a{
+    font-size:0.56vw;
+    text-decoration:none;
+    background-color:#333;
+    color:#fff;
+    padding:0.21vh 0.23vw;
+    border-radius:0.14vw;
+    margin-left:0.23vw;
+    position: relative;
+}
+.btnwrap{
+    display: flex;
+    width:20vw;
+    text-align:center;
+}
+.btnwrap label{
+    position:absolute;
+    left:-999em;
+}
+.btnwrap a{
+    margin-left:3vw;
+    width:6vw;
+    height:2.43vh;
+    background-color:#999;
+    text-decoration:none;
+    border-radius:0.14vw;
+    color:#fff;
+    font-size:0.65vw;
+    font-weight:bold;
+    line-height:2.43vh;
+    position:relative;
+}
+#loginbtn{
+    width:6vw;
+    text-align: center;
+    height:2.43vh;
+    border:none;
+    background-color: #004593;
+    border-radius:0.14vw;
+    color:#fff;
+    font-size:0.65vw;
+    font-weight:bold;
+    position:relative;
+}
+/*탭 메뉴 설정*/
+
+
+ul li{
+        
+         list-style-type: none;
+
+}
+
+.tab-box{
+         margin: 0 auto;
+
+         width:80vw;
+
+}
+
+#gachonlogo {
+    width:15.85vw;
+    height:9vh;
+    display:flex;
+    position:relative;
+    left:0;
+    float:left;
+    top: 1.5vh;
+}
+
+
+
+.tab-box li{
+
+         
+        float:left;
+         width:15.85vw;
+         font-size: 2vh;
+         height:9.86vh;      
+
+         line-height:9.03vh;          
+
+        /* 중앙정렬 */
+         text-align: center;
+
+         background-color: hsl(0, 0%, 100%);
+
+         border-radius:0.21vh 0.14vw 0 0;
+
+         
+         
+
+cursor: pointer;
+
+}
+
+.tab-box li.selected{
+
+         background-color: orange;
+
+}
+
+.tab-view{
+
+         width:23.53vw;
+
+         height:6.94vh;
+
+         line-height: 6.94vh;
+
+         border: 1px solid gray;
+
+         text-align:center;
+
+         margin-top:-0.07vh;
+
+}
+
+/*책 소개 영역*/
+.books{
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    height: 60vh;
+    margin: 0 auto;
+}
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-family:sans-serif;
+  
+  }
+  
+  body {
+    background-image:#34495e;
+  }
+  
+  .joinForm {
+    position:absolute;
+    width:400px;
+    height:400px;
+    padding: 30px, 20px;
+    background-color:#FFFFFF;
+    text-align:center;
+    top:40%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border-radius: 15px;
+  }
+  
+  .joinForm h2 {
+    text-align: center;
+    margin: 30px;
+  }
+  
+  .textForm {
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 10px 10px;
+  }
+  
+  
+  .id {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+  }
+  
+  .pw {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+  }
+  
+  .name {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+  }
+  
+  .email {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+  }
+  
+  .nickname {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+  }
+  
+  .cellphoneNo {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+  }
+  
+  .btn {
+    position:relative;
+    left:40%;
+    transform: translateX(-50%);
+    margin-bottom: 40px;
+    width:80%;
+    height:40px;
+    background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+  }
+  
+  .btn:hover {
+    background-position: right;
+  }
+
+  #divProfileTitle {
+    font-size: 14px;
+    color: #4160ad;
+    font-weight: bold;
+    padding: 16px 16px 0 16px;
+}
+
+
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+#addtionalContent {
+    width: 150px;
+    float: right;
+    margin: 0 16px 16px 0;
+}
+
+
+
+
+#divProfile {
+    display: flex;
+    padding: 0 16px;
+    margin-bottom: 16px;
+    width: 75%;
+    line-height: 1.5em;
+}
+
+
+
+#divHoldingInfo {
+    width: auto;
+    margin-bottom: 16px;
+}
+
+
+
+#addtionalContent {
+    width: 150px;
+    float: right;
+    margin: 0 16px 16px 0;
+}
+
+
+img {
+    border: 0 none;
+    vertical-align: middle;
+}
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.profiletable {
+    border: 0px;
+    margin: 12px 0 0 0;
+}
+table {
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+}
+user agent stylesheet
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
+}
+#divProfile {
+    display: flex;
+    padding: 0 16px;
+    margin-bottom: 16px;
+    width: 75%;
+    line-height: 1.5em;
+}
+
+.skip, hr, legend, caption {
+    display: none;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    border: 0;
+    visibility: hidden;
+}
+body, h1, h2, h3, h4, h5, h6, pre, input, p, th, td {
+    margin: 0;
+    padding: 0;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.divProfileInfo {
+    display: flex;
+    position: relative;
+    width: 100%;
+    background: #f8f8f8;
+    margin: 0 0 16px 0;
+    padding: 0 0 10px 0;
+}
+.divContents{
+    display: flex;
+    flex-direction: column;
+}
+#divContents #divContent {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 980px;
+    min-height: 600px;
+    margin-top: 32px;
+    margin: 0 auto;
+}
+
+
+
+.skip, hr, legend, caption {
+    display: none;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    border: 0;
+    visibility: hidden;
+}
+body, h1, h2, h3, h4, h5, h6, pre, input, p, th, td {
+    margin: 0;
+    padding: 0;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+element.style {
+    padding-top: 0px;
+    background: url(/image/ko/local/contentsBg.gif) 0px 0px repeat-x rgb(255, 255, 255);
+    z-index: 12;
+}
+#divContents {
+    position: relative;
+    min-width: 1106px;
+    padding: 0 0 34px 0;
+    background: url(../../image/ko/local/contentsBg.gif) repeat-x 0 0 #fff;
+    z-index: 10;
+}
+
+
+
+
+#divContents #divContentW {
+    position: relative;
+    width: 1106px;
+    min-height: 600px;
+    margin: 0 auto;
+}
+
+
+
+
+#divContents #divContent {
+    position: relative;
+    width: 980px;
+    min-height: 600px;
+    margin-top: 32px;
+}
+
+
+.divProfileInfo {
+    display: flex;
+    position: relative;
+    width: 100%;
+    background: #f8f8f8;
+    margin: 0 0 16px 0;
+    padding: 0 0 10px 0;
+}
+
+
+
+#divProfileTitle {
+    font-size: 14px;
+    color: #4160ad;
+    font-weight: bold;
+    padding: 16px 16px 0 16px;
+}
+
+
+
+#divProfile {
+    display: flex;
+    padding: 0 16px;
+    margin-bottom: 16px;
+    width: 75%;
+    line-height: 1.5em;
+}
+
+
+
+.bannerbackground {
+    display: flex;
+    height: 10vh;
+    background-color: #004593;
+}
+
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+* {
+    padding: 0;
+    margin: 0;
+    color: #333333;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+body {
+    text-align: center;
+    overflow: scroll;
+}
+
+.banner {
+    display: flex;
+    width: 84vw;
+    height: 10vh;
+    margin: 0 auto;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+body {
+    text-align: center;
+    overflow: scroll;
+}
+
+.banner h1 {
+    font-size: 4.5vh;
+    margin-left: 2vw;
+    margin-top: 2vh;
+    color: white;
+}
+body, h1 {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    color: #333333;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.listtable {
+    /* clear: both; */
+    width: 100%;
+    border-top: 1px solid #A2A6AA;
+    border-bottom: 1px solid #A2A6AA;
+    border-left: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+}
+table{
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+}
+user agent stylesheet
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
+}
+#divList {
+    /* float: left; */
+    margin: 0;
+    line-height: 1.7em;
+}
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+
+.divQuestion {
+    border: 1px solid #d0d2d3;
+    margin: 0 0 20px 0;
+}
+
+
+.divboardDetail {
+    margin: 0 auto;
+    clear: both;
+    line-height: 1.4em;
+}
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+
+
+.questionInfo {
+    background-color: #f3f6f9;
+    width: 100%;
+    height: auto;
+}
+
+
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+
+.boardUserimg {
+    margin: 8px 12px 0 20px;
+    float: left;
+}
+img {
+    border: 0 none;
+    vertical-align: middle;
+}
+img {
+    width: 38px;
+    aspect-ratio: auto 38 / 38;
+    height: 38px;
+}
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+.questionTitleW {
+    padding: 12px 0 12px 0;
+}
+
+
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+
+.questionTitle {
+    color: #000;
+    font-weight: bold;
+    font-size: 13px;
+    display: inline;
+}
+body, h1, h2, h3, h4, h5, h6, pre, input, p, th, td {
+    margin: 0;
+    padding: 0;
+}
+user agent stylesheet
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+
+.questionViewer {
+    margin: 2px 0 0 70px;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dl {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+
+.questionViewdata {
+    background-color: #fff;
+    background-image: url(/image/ko/common/board_lineDott.gif);
+    background-repeat: repeat-x;
+    height: 28px;
+    line-height: 220%;
+}
+
+
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+
+.questionViewdata dl {
+    display: block;
+    float: right;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dl {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.questionViewdata {
+    background-color: #fff;
+    background-image: url(/image/ko/common/board_lineDott.gif);
+    background-repeat: repeat-x;
+    height: 28px;
+    line-height: 220%;
+}
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+.questionViewdata dt {
+    padding: 0 6px 0 0;
+}
+.questionDateTitle {
+    font-weight: bold;
+    float: left;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dt {
+    display: block;
+}
+.questionViewdata {
+    background-color: #fff;
+    background-image: url(/image/ko/common/board_lineDott.gif);
+    background-repeat: repeat-x;
+    height: 28px;
+    line-height: 220%;
+}
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+.questionViewdata dd {
+    padding: 0 20px 0 0;
+}
+.questionDate {
+    float: left;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dd {
+    display: block;
+    margin-inline-start: 40px;
+}
+.questionViewdata {
+    background-color: #fff;
+    background-image: url(/image/ko/common/board_lineDott.gif);
+    background-repeat: repeat-x;
+    height: 28px;
+    line-height: 220%;
+}
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+.questionViewdata dt {
+    padding: 0 6px 0 0;
+}
+.questionHitTitle {
+    font-weight: bold;
+    float: left;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+dt {
+    display: block;
+}
+.questionViewdata {
+    background-color: #fff;
+    background-image: url(/image/ko/common/board_lineDott.gif);
+    background-repeat: repeat-x;
+    height: 28px;
+    line-height: 220%;
+}
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+.questionViewdata dd {
+    padding: 0 20px 0 0;
+}
+.questionHitNum {
+    float: left;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dd {
+    display: block;
+    margin-inline-start: 40px;
+}
+.questionViewdata {
+    background-color: #fff;
+    background-image: url(/image/ko/common/board_lineDott.gif);
+    background-repeat: repeat-x;
+    height: 28px;
+    line-height: 220%;
+}
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+.questionViewdata dl {
+    display: block;
+    float: right;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dl {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.questionViewdata {
+    background-color: #fff;
+    background-image: url(/image/ko/common/board_lineDott.gif);
+    background-repeat: repeat-x;
+    height: 28px;
+    line-height: 220%;
+}
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+#divContents #divContent {
+    display: flex;
+    position: relative;
+    width: 980px;
+    min-height: 600px;
+    margin-top: 32px;
+}
+
+
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+
+
+.btnPlus {
+    display: inline-block;
+    float: left;
+    position: absolute;
+    right: 5px;
+    top: 204px;
+}
+
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+.questionInfo {
+    background-color: #f3f6f9;
+    width: 100%;
+    height: auto;
+}
+
+
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+.questionBody {
+    padding: 12px 20px 20px 20px;
+    line-height: 1.7em;
+}
+
+
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+.divAddfiles {
+    padding: 0 20px 20px 20px;
+}
+
+
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+.divAnswerW {
+    margin: 0 0 20px 0;
+}
+
+
+.skip, hr, legend, caption {
+    display: none;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    border: 0;
+    visibility: hidden;
+}
+legend, caption, hr {
+    display: none;
+}
+hr {
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}
+
+.divButton {
+    padding: 30px 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+
+.LinkButtonA {
+    display: inline-block;
+    height: 29px;
+    background: url(/image/ko/common/btn/button1l.gif) no-repeat 0 0;
+}
+
+.divButton {
+    padding: 30px 0;
+    font-size: 14px;
+    text-align: center;
+}
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+
+.divboardList {
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dl {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.boardPrev {
+    background: url(/image/ko/common/ico/arrow_up.gif) no-repeat 20px 50%;
+    height: 32px;
+    color: #E67714;
+    font-weight: bold;
+    float: left;
+    padding: 0 12px 0 24px;
+    border-top: 1px solid #b9b9b9;
+    line-height: 280%;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dt {
+    display: block;
+}
+
+.divboardList dl dd {
+    height: 32px;
+}
+.boardPrevW {
+    border-top: 1px solid #a2a6aa;
+    line-height: 280%;
+    background: url(/image/ko/common/board_line.gif) no-repeat 90px 48%;
+    padding: 0 0 0 106px;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dd {
+    display: block;
+    margin-inline-start: 40px;
+}
+
+a:link {
+    color: #525252;
+    text-decoration: none;
+}
+a {
+    color: #525252;
+    text-decoration: none;
+}
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.boardPrevW {
+    border-top: 1px solid #a2a6aa;
+    line-height: 280%;
+    background: url(/image/ko/common/board_line.gif) no-repeat 90px 48%;
+    padding: 0 0 0 106px;
+}
+
+.boardNext {
+    clear: both;
+    background: url(/image/ko/common/ico/arrow_down.gif) no-repeat 20px 50%;
+    height: 32px;
+    color: #E67714;
+    font-weight: bold;
+    float: left;
+    padding: 0 12px 0 24px;
+    border-bottom: 1px solid #b9b9b9;
+    border-top: 1px dotted #d9d7d7;
+    line-height: 280%;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.divboardList dl dd {
+    height: 32px;
+}
+.boardNextW {
+    border-bottom: 1px solid #a2a6aa;
+    border-top: 1px dotted #d9d7d7;
+    line-height: 280%;
+    background: url(/image/ko/common/board_line.gif) no-repeat 90px 48%;
+    padding: 0 0 0 106px;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dd {
+    display: block;
+    margin-inline-start: 40px;
+}
+a:visited {
+    color: #525252;
+    text-decoration: none;
+}
+a {
+    color: #525252;
+    text-decoration: none;
+}
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+element.style {
+    padding-top: 0px;
+    background: url(/image/ko/local/contentsBg.gif) 0px 0px repeat-x rgb(255, 255, 255);
+    z-index: 12;
+}
+#divContents {
+    position: relative;
+    min-width: 1106px;
+    padding: 0 0 34px 0;
+    background: url(../../image/ko/local/contentsBg.gif) repeat-x 0 0 #fff;
+    z-index: 10;
+}
+
+
+body {
+    font-family: "돋움",dotum,"굴림",Gulim,"Trebuchet MS",arial,Verdana;
+    font-size: 0.75em;
+    line-height: 1.4em;
+    color: #555;
+}
+
+.questionTitleW {
+    float: left;
+    padding: 12px 0 12px 0;
+}
+
+
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+.questionViewer {
+    margin: 2px 0 0 70px;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dl {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+.questionWriter {
+    color: #333;
+    font-weight: bold;
+    padding: 0 6px 0 0;
+    float: left;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+dt {
+    display: block;
+}
+
+.questionPresent {
+    color: #333;
+}
+dl, dt, dd, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+dd {
+    display: block;
+    margin-inline-start: 40px;
+}
+a:link {
+    color: #525252;
+    text-decoration: none;
+}
+body, h1, h2, h3, h4, h5, h6, pre, input, p, th, td {
+    margin: 0;
+    padding: 0;
+}
+p {
+    text-align: left;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.questionBody {
+    padding: 12px 20px 20px 20px;
+    line-height: 1.7em;
+}
+.divboardDetail {
+    clear: both;
+    line-height: 1.4em;
+}
+
+strong {
+    font-weight: bold;
+}
+.questionBody {
+    padding: 12px 20px 20px 20px;
+    line-height: 1.7em;
+}

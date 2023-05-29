@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import jakarta.persistence.EntityManager;
+import lib.backend.libraryservice.Entity.Book;
 import lib.backend.libraryservice.Entity.Reservation;
 import lib.backend.libraryservice.repository.BookRepository;
 import lib.backend.libraryservice.repository.BorrowRepository;
@@ -34,16 +36,19 @@ public class ReservationService {
     }
 
     // 예약자 수 반환하는 메서드
-    public Integer countReservations(Integer book_code) {
-        return reservationRepository.countReservationByBookCode(book_code);
+    public Integer countReservations(Integer code) {
+        return reservationRepository.countReservationByBookCode(code);
     }
 
     // 예약 기능 구현 메서드
-    public void reservationFunc(Integer book_code, Integer user_num) {
+    @Transactional
+    public void reservationFunc(Integer code, Integer user_num) {
+        Book book = bookRepository.getByBookCode(code);
         Date date1 = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String DateStr = sdf.format(date1);
-        reservationRepository.bookReservationInsert(book_code, user_num, DateStr);
+        reservationRepository.bookReservationInsert(code, user_num, book.getTitle(), book.getAuthor(),
+                book.getISBN(), DateStr);
     }
 
     // 예약 여부 판단 후 구현 메서드
@@ -58,11 +63,31 @@ public class ReservationService {
     }
 
     // 도서 예약 가능 예상 날짜
-    public Date expectedBorrowDate(Integer book_code, Integer user_num) {
+    public Date expectedBorrowDate(Integer code, Integer user_num) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(borrowRepository.getEndDateByUserNumAndBookCode(book_code, user_num));
+        calendar.setTime(borrowRepository.getEndDateByUserNumAndBookCode(code, user_num));
         calendar.add(Calendar.DATE, 14);
         Date updatedDate = calendar.getTime();
         return updatedDate;
+    }
+
+    public Integer checkBorrowedBooks(Integer user_num) {
+        return reservationRepository.checkReservationBooks(user_num);
+    }
+
+    public Integer checkReservation(Integer user_num, Integer code) {
+        if (reservationRepository.checkReservation(user_num, code) == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public List<Reservation> getListReservation(Integer user_num) {
+        return reservationRepository.getListReservation(user_num);
+    }
+
+    public List<Reservation> getWaitingList(){
+        return reservationRepository.findAll();
     }
 }

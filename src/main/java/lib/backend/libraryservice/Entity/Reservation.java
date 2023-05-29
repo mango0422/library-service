@@ -1,4 +1,4 @@
-    package lib.backend.libraryservice.Entity;
+package lib.backend.libraryservice.Entity;
 
 import com.google.cloud.Date;
 
@@ -24,21 +24,34 @@ import lombok.Setter;
 public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_code")
-    private Integer book_code;
+    @Column(name = "code")
+    private Integer code;
 
     @Column(name = "user_num")
     private Integer user_num;
 
-    @Column(name = "date")
-    private Timestamp date;
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "author")
+    private String author;
+
+    @Column(name = "ISBN")
+    private String ISBN;
+
+    @Column(name = "expecteddate")
+    private Timestamp expecteddate;
 
     public Reservation() {
     }
 
-    public Reservation(Integer book_code, Integer user_num, Timestamp date) {
-        this.book_code = book_code;
+    public Reservation(Integer code, Integer user_num, String title, String author, String ISBN,
+            Timestamp expecteddate) {
+        this.code = code;
         this.user_num = user_num;
-        this.date = date;
+        this.title = title;
+        this.author = author;
+        this.ISBN = ISBN;
+        this.expecteddate = expecteddate;
     }
 }

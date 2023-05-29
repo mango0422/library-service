@@ -38,7 +38,6 @@
       }
     </script>
   </head>
-
   <body>
     <div class="header">
       <div class="tab-box">
@@ -49,13 +48,19 @@
             th:src="@{img/gachonlogo.jpg}"
         /></a>
         <ul id="tab">
-          <li><a th:href="@{/introduce}">도서관 소개</a></li>
-
-          <li><a th:href="@{/search-page}">검색</a></li>
-
-          <li><a th:href="@{/mypage}">대출/연장/예약</a></li>
-
-          <li><a th:href="@{/community}">커뮤니티</a></li>
+          <li><a href="/introduce">도서관 소개</a></li>
+          <li><a href="/search-page">검색</a></li>
+          <li
+            th:unless="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a href="/mypage">마이페이지</a>
+          </li>
+          <li><a href="/community">커뮤니티</a></li>
+          <li
+            th:if="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a th:href="@{/managePage}">관리 페이지</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -76,9 +81,9 @@
           <div class="selectbox1">
             <select name="title1">
               <!-- 수정: name 속성 변경 -->
-              <option value="book_title">서명</option>
-              <option value="book_author">저자</option>
-              <option value="book_publisher">출판사</option>
+              <option value="title">서명</option>
+              <option value="author">저자</option>
+              <option value="publisher">출판사</option>
             </select>
             <input type="text" name="input1" />
             <!-- 수정: name 속성 변경 -->
@@ -92,9 +97,9 @@
           <div class="selectbox2">
             <select name="title2">
               <!-- 수정: name 속성 변경 -->
-              <option value="book_title">서명</option>
-              <option value="book_author">저자</option>
-              <option value="book_publisher">출판사</option>
+              <option value="title">서명</option>
+              <option value="author">저자</option>
+              <option value="publisher">출판사</option>
             </select>
             <input type="text" name="input2" />
             <!-- 수정: name 속성 변경 -->
@@ -108,9 +113,9 @@
           <div class="selectbox3">
             <select name="title3">
               <!-- 수정: name 속성 변경 -->
-              <option value="book_title">서명</option>
-              <option value="book_author">저자</option>
-              <option value="book_publisher">출판사</option>
+              <option value="title">서명</option>
+              <option value="author">저자</option>
+              <option value="publisher">출판사</option>
             </select>
             <input type="text" name="input3" />
             <!-- 수정: name 속성 변경 -->
@@ -119,27 +124,30 @@
         <div class="searchcheckbox">
           <div class="checkbox1">
             <h2>자료유형</h2>
-            <input
-              type="checkbox"
-              name="book_type"
-              value="all"
-              id="all"
-              checked
-            />
+            <input type="checkbox" name="type" value="all" id="all" checked />
             <!-- 수정: name 속성 변경 -->
             <label for="ALL">ALL</label>
-            <input type="checkbox" name="book_type" value="book" id="book" />
+            <input type="checkbox" name="type" value="단행본" id="book" />
             <!-- 수정: name 속성 변경 -->
-            <label for="book">종이책</label>
-            <input type="checkbox" name="book_type" value="ebook" id="ebook" />
+            <label for="book">단행본</label>
+            <input type="checkbox" name="type" value="연간물" id="ebook" />
             <!-- 수정: name 속성 변경 -->
-            <label for="ebook">전자책</label>
+            <label for="ebook">연간물</label>
+            <input type="checkbox" name="type" value="학위논문" id="ebook" />
+            <!-- 수정: name 속성 변경 -->
+            <label for="ebook">학위논문</label>
+            <input type="checkbox" name="type" value="기사" id="ebook" />
+            <!-- 수정: name 속성 변경 -->
+            <label for="ebook">기사</label>
+            <input type="checkbox" name="type" value="고서" id="ebook" />
+            <!-- 수정: name 속성 변경 -->
+            <label for="ebook">고서</label>
           </div>
         </div>
         <div class="searchselectbox2">
           <div class="selectbox4">
             <h2>언어</h2>
-            <select name="book_lang">
+            <select name="lang">
               <!-- 수정: name 속성 변경 -->
               <option value="all">전체</option>
               <option value="kr">한국어</option>

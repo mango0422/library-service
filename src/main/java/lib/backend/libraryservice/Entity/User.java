@@ -1,7 +1,5 @@
 package lib.backend.libraryservice.Entity;
 
-// import com.google.cloud.Date;
-
 import java.sql.Date;
 
 import java.io.Serializable;

@@ -16,7 +16,6 @@
       type="text/javascript"
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     ></script>
-    <!-- HTML 내부에 스크립트 추가 -->
     <script>
       // 서버로부터 응답을 받는 함수
       function handleResponse(response) {
@@ -56,6 +55,7 @@
           });
       }
     </script>
+    <!-- HTML 내부에 스크립트 추가 -->
   </head>
 
   <body>
@@ -69,10 +69,19 @@
         /></a>
 
         <ul id="tab">
-          <li><a th:href="@{/introduce}">도서관 소개</a></li>
-          <li><a th:href="@{/search-page}">검색</a></li>
-          <li><a th:href="@{/mypage}">마이페이지</a></li>
-          <li><a th:href="@{/community}">커뮤니티</a></li>
+          <li><a href="/introduce">도서관 소개</a></li>
+          <li><a href="/search-page">검색</a></li>
+          <li
+            th:unless="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a href="/mypage">마이페이지</a>
+          </li>
+          <li><a href="/community">커뮤니티</a></li>
+          <li
+            th:if="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a th:href="@{/managePage}">관리 페이지</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -89,7 +98,7 @@
     <div class="divProfileTitle">
       <div class="booktitle">
         <h2>책제목 :</h2>
-        <h2 th:text="${book.book_title}"></h2>
+        <h2 th:text="${book.title}"></h2>
       </div>
     </div>
 
@@ -103,36 +112,36 @@
           <tbody>
             <tr>
               <th scope="row">도서번호</th>
-              <td th:text="${book.book_code}"></td>
+              <td th:text="${book.code}"></td>
             </tr>
             <tr>
               <th scope="row">서명</th>
-              <td th:text="${book.book_title}"></td>
+              <td th:text="${book.title}"></td>
             </tr>
             <tr>
               <th scope="row">저자</th>
-              <td th:text="${book.book_author}"></td>
+              <td th:text="${book.author}"></td>
             </tr>
             <tr>
               <th scope="row">출판사</th>
-              <td th:text="${book.book_publisher}"></td>
+              <td th:text="${book.publisher}"></td>
             </tr>
             <tr>
               <th scope="row">언어</th>
-              <td th:text="${book.book_lang}"></td>
+              <td th:text="${book.lang}"></td>
             </tr>
             <tr>
               <th scope="row">자료유형</th>
-              <td th:text="${book.book_type}"></td>
+              <td th:text="${book.type}"></td>
             </tr>
             <tr>
               <th scope="row">발행년도</th>
-              <td th:text="${book.book_year}"></td>
+              <td th:text="${book.year}"></td>
             </tr>
             <script th:inline="javascript">
               /*<![CDATA[*/
               function checkLoaned() {
-                var loan = [[${book.book_borrow}]];
+                var loan = [[${book.borrow}]];
                 if (loan == 0) {
                   var loantext = document.getElementById("loanState");
                   loantext.textContent = "대출 가능";
@@ -146,16 +155,28 @@
             </script>
             <tr>
               <th scope="row">대출현황</th>
-              <td
-                id="loanState"
-                th:text="${showButton == 1 ? '대출 가능' : '대출중'}"
-              ></td>
+              <td id="loanState" th:block th:switch="${bookStatus}">
+                <span th:case="0">대출 가능</span>
+                <span th:case="1">대출중</span>
+              </td>
             </tr>
           </tbody>
         </table>
-        <form action="/borrow" method="post">
-          <input type="hidden" name="book_code" th:value="${book.book_code}" />
-          <button th:if="${showButton == 1}" type="submit">버튼</button>
+        <form action="/borrow" method="request">
+          <input type="hidden" name="code" th:value="${book.code}" />
+          <button th:if="${showButton == 0}" type="submit">대출</button>
+        </form>
+        <form action="/reservation" method="request">
+          <input type="hidden" name="code" th:value="${book.code}" />
+          <button th:if="${showButton == 1}" type="submit">예약</button>
+        </form>
+        <form action="/return" method="request">
+          <input type="hidden" name="code" th:value="${book.code}" />
+          <button th:if="${showButton == 2}" type="submit">반납</button>
+        </form>
+        <form action="/cancel_reservation" method="request">
+          <input type="hidden" name="code" th:value="${book.code}" />
+          <button th:if="${showButton == 3}" type="submit">예약취소</button>
         </form>
         <div id="addtionalContent"></div>
         <div id="divHoldingInfo">

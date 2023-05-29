@@ -2,26 +2,36 @@ package lib.backend.libraryservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import lib.backend.libraryservice.Entity.Book;
 import lib.backend.libraryservice.repository.BookRepository;
 import java.util.List;
 
 @Service
 public class BookService {
+    private BookRepository bookRepository;
+
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    @Transactional
     public List<Book> searchBooks(
             String title1, String title2, String title3,
             String input1, String input2, String input3,
             String operator1, String operator2,
-            String book_type, String book_lang,
+            String type, String lang,
             Integer start_year, Integer end_year) {
         // // ... 쿼리 조건을 생성하는 로직 추가 ...
 
         StringBuilder queryBuilder = new StringBuilder("SELECT * FROM book WHERE ");
-        if ((input1 == null || !input1.isEmpty()) && (input2 == null || input2.isEmpty())
-                && (input3 == null && input3.isEmpty())) {
+        if ((input1 == null || input1.isEmpty()) && (input2 == null || input2.isEmpty())
+                && (input3 == null || input3.isEmpty())) {
             return null;
         }
         if (title1 != null && !title1.isEmpty() && input1 != null && !input1.isEmpty()) {
@@ -44,7 +54,7 @@ public class BookService {
                     && ((input1 != null && !input1.isEmpty()) || input2 != null && !input2.isEmpty())) {
                 if (operator2.equals("AND") || operator2.equals("OR")) {
                     queryBuilder.append(operator2).append(" ").append(title3);
-                } else if (operator1.equals("NOT")) {
+                } else if (operator2.equals("NOT")) {
                     queryBuilder.append(" AND ").append(title3).append(" NOT");
                 }
                 queryBuilder.append(" LIKE '%").append(input3).append("%'");
@@ -52,17 +62,17 @@ public class BookService {
                 queryBuilder.append(title3).append(" LIKE '%").append(input3).append("%'");
             }
         }
-        if (!book_type.equals("all")) {
-            queryBuilder.append(" AND book_type = '").append(book_type).append("'");
+        if (!type.equals("all")) {
+            queryBuilder.append(" AND type = '").append(type).append("'");
         }
-        if (!book_lang.equals("all")) {
-            queryBuilder.append(" AND book_lang = '").append(book_lang).append("'");
+        if (!lang.equals("all")) {
+            queryBuilder.append(" AND lang = '").append(lang).append("'");
         }
         if (start_year != 0) {
-            queryBuilder.append(" AND book_year >= ").append(start_year);
+            queryBuilder.append(" AND year >= ").append(start_year);
         }
         if (end_year != 0) {
-            queryBuilder.append(" AND book_year <= ").append(end_year);
+            queryBuilder.append(" AND year <= ").append(end_year);
         }
         String query = queryBuilder.toString();
 
@@ -81,10 +91,12 @@ public class BookService {
         return books;
     }
 
-    private BookRepository bookRepository;
+    // code를 조건으로 Book 데이터 조회하기
+    public Book getByBookCode(Integer code) {
+        return bookRepository.getByBookCode(code);
+    }
 
-    // book_code를 조건으로 Book 데이터 조회하기
-    public Book getByBookCode(Integer book_code) {
-        return bookRepository.getByBookCode(book_code);
+    public List<Book> selectBooks() {
+        return bookRepository.findAll();
     }
 }

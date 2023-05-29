@@ -31,15 +31,20 @@
             src="../static/img/gachonlogo.jpg"
             th:src="@{img/gachonlogo.jpg}"
         /></a>
-
         <ul id="tab">
-          <li><a th:href="@{/introduce}">도서관 소개</a></li>
-
-          <li><a th:href="@{/search-page}">검색</a></li>
-
-          <li><a th:href="@{/mypage}">대출/연장/예약</a></li>
-
-          <li><a th:href="@{/community}">커뮤니티</a></li>
+          <li><a href="/introduce">도서관 소개</a></li>
+          <li><a href="/search-page">검색</a></li>
+          <li
+            th:unless="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a href="/mypage">마이페이지</a>
+          </li>
+          <li><a href="/community">커뮤니티</a></li>
+          <li
+            th:if="${session.user != null and session.user.user_name eq 'admin'}"
+          >
+            <a th:href="@{/managePage}">관리 페이지</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -56,7 +61,6 @@
               <label for="loginpw" class="labelpw">패스워드</label>
               <input type="password" name="user_pw" id="loginpw" />
             </div>
-
             <div class="btnwrap">
               <a href="./signup.html" th:href="@{/signup}">회원가입</a>
               <input type="submit" id="loginbtn" value="로그인" />
@@ -67,16 +71,19 @@
         <div class="search">
           <div class="search-box">
             <h1 id="searchtitle">통합검색</h1>
-            <div class="searchinput">
-              <input type="text" id="searchbar" placeholder="검색어 입력" />
-              <img
-                src="../static/img/searchicon.png"
-                th:src="@{img/searchicon.png}"
-                id="searchicon"
-              />
-            </div>
+            <form>
+              <div class="searchinput">
+                <input type="text" id="searchbar" placeholder="검색어 입력" />
+                <a method="post" th:action="@{/search_mini}">
+                  <img
+                    src="../static/img/searchicon.png"
+                    th:src="@{img/searchicon.png}"
+                    id="searchicon"
+                  />
+                </a>
+              </div>
+            </form>
           </div>
-
           <img
             src="../static/img/gachonlibrary.jpg"
             id="libraryimg"

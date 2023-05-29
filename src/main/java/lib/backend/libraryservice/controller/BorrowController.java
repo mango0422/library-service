@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpSession;
 import lib.backend.libraryservice.Entity.User;
@@ -16,52 +18,66 @@ import lib.backend.libraryservice.service.BorrowService;
 @Controller
 public class BorrowController {
 
-    @Autowired
     private BorrowService borrowService;
     private BorrowRepository borrowRepository;
 
-    // @PostMapping("/borrow")
-    // public String borrow(@RequestParam("book_code") String bookcode, HttpSession
-    // session, Model model) {
-    // User user = (User) session.getAttribute("user");
-    // if (user == null) { // 1. 로그인 안한경우
-    // return "1";
-    // }
-    // // bookId를 가져와서 BookCode로 책 정보 조회
-    // int book_code = 0;
-    // try {
-    // book_code = Integer.parseInt(bookcode);
-    // } catch (NumberFormatException e) {
+    @Autowired
+    public BorrowController(BorrowService borrowService, BorrowRepository borrowRepository) {
+        this.borrowRepository = borrowRepository;
+        this.borrowService = borrowService;
+    }
 
-    // }
-    // // 대출 버튼 누르면 타임스탬프 찍고,
-    // if (borrowService.checkBorrowedBooks(user.getUser_num()) > 5) { // 2.
-    // return "2";
-    // } else {
-    // borrowService.borrowFunc(book_code, user.getUser_num());
-    // borrowService.borrowFunc(user.getUser_num(), book_code);
-    // return "3";
-    // }
-    // }
-
-    @PostMapping("/borrow")
-    public ResponseEntity<String> borrow(@RequestParam("book_code") String book_code, HttpSession session,
+    @ResponseBody
+    @RequestMapping("/borrow")
+    public String borrow(@RequestParam("code") String code, HttpSession session,
             Model model) {
+        int bookcode = Integer.parseInt(code); // book_code 값을 정수로 변환
+        if (borrowService.ifExistsByCode(bookcode) != 0) {
+            String message = "<script>alert('이미 누군가 대출하였습니다.');history.back();</script>";
+            return message;
+        }
         User user = (User) session.getAttribute("user");
         if (user == null) { // 1. 로그인 안한경우
-            return ResponseEntity.ok("1|로그인하셔야 합니다."); // Return response with status code "1" and message
+            String message = "<script>alert('로그인하셔야 합니다.');history.back();</script>";
+            return message;
         }
         // bookId를 가져와서 BookCode로 책 정보 조회
         // int book_code = 0;
         // book_code = Integer.parseInt(bookcode);
         // 대출 버튼 누르면 타임스탬프 찍고,
-        int bookcode = Integer.parseInt(book_code); // book_code 값을 정수로 변환
         if (borrowService.checkBorrowedBooks(user.getUser_num()) > 5) { // 2.
-            return ResponseEntity.ok("2|대출 권수를 초과했습니다."); // Return response with status code "2" and message
+            String message = "<script>alert('대출 권수를 초과했습니다.');history.back();</script>";
+            return message;
         } else {
             borrowService.borrowFunc(user.getUser_num(), bookcode);
-            return ResponseEntity.ok("3|대출되었습니다. 3시간 내에 대출 완료를 하셔야 대출이 완료됩니다."); // Return response with status code "3"
+            String message = "<script>alert('대출되었습니다. 3시간 내에 대출 완료를 하셔야 대출이 완료됩니다.');history.back();</script>";
+            return message; // Return response with status code "3"
             // and message
         }
+    }
+
+    @ResponseBody
+    @RequestMapping("/return")
+    public String returnBook(@RequestParam("code") String code, HttpSession session,
+            Model model) {
+        int bookcode = Integer.parseInt(code); // book_code 값을 정수로 변환
+        if (borrowService.ifExistsByCode(bookcode) == 0) {
+            String message = "<script>alert('이미 누군가 반납하였습니다.');history.back();</script>";
+            return message;
+        }
+        User user = (User) session.getAttribute("user");
+        if (user == null) { // 1. 로그인 안한경우
+            String message = "<script>alert('로그인하셔야 합니다.');history.back();</script>";
+            return message;
+        }
+        if (user.getUser_num() == borrowService.showBorrowUserNum(bookcode)) {
+            borrowService.returnFunc(bookcode, user.getUser_num());
+            String message = "<script>alert('반납되었습니다.');location.href='/mypage';</script>";
+            return message; // Return response with status code "3"
+        } else {
+            String message = "<script>alert('일시적인 에러입니다.');history.back();</script>";
+            return message;
+        }
+        // and message
     }
 }

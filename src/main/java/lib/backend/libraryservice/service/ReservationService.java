@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.Query;
@@ -22,12 +23,15 @@ public class ReservationService {
     private ReservationRepository reservationRepository;
     private BookRepository bookRepository;
     private BorrowRepository borrowRepository;
+    private JdbcTemplate jdbcTemplate;
 
     public ReservationService(ReservationRepository reservationRepository, BookRepository bookRepository,
+            JdbcTemplate jdbcTemplate,
             BorrowRepository borrowRepository) {
         this.reservationRepository = reservationRepository;
         this.bookRepository = bookRepository;
         this.borrowRepository = borrowRepository;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     // 유저 고유번호로 예약한 리스트 꺼내기.
@@ -87,7 +91,13 @@ public class ReservationService {
         return reservationRepository.getListReservation(user_num);
     }
 
-    public List<Reservation> getWaitingList(){
+    public List<Reservation> getWaitingList() {
         return reservationRepository.findAll();
+    }
+
+    // 예약 취소
+    public void cancel_reservation(Integer book_code) {
+        String sql = "DELETE FROM reservation WHERE code = ?";
+        jdbcTemplate.update(sql, book_code);
     }
 }

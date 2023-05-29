@@ -42,4 +42,19 @@ public class ReservationController {
         // 대출중일 경우, 예약 하기.
         // 예상 대출 가능일자(반납일 + 14 * '예약자 수')
     }
+
+    @ResponseBody
+    @RequestMapping("/cancel_reservation")
+    public String cancel_reservation(@RequestParam("code") String code, HttpSession session, Model model) {
+        int bookcode = Integer.parseInt(code);
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            String message = "<script>alert('로그인하셔야 합니다.');location.href='/home';</script>";
+            return message;
+        } else {
+            reservationService.cancel_reservation(bookcode);
+            String message = "<script>alert('예약 취소완료했습니다.');location.href='/mypage';</script>";
+            return message;
+        }
+    }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width =device-width, initial-scale=1.0" />
@@ -13,19 +13,19 @@
     <link
       type="text/css"
       rel="stylesheet"
-      href="../static/css/notice_page.css"
-      th:href="@{css/notice_page.css}"
+      href="../static/css/searchpagestyle.css"
+      th:href="@{css/searchpagestyle.css}"
     />
-    <!-- <script src="js/myscript.js"></script> -->
     <script
       type="text/javascript"
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     ></script>
-    <script
-      type="text/javascript"
-      src="../static/js/notice_page_paging.js"
-      th:src="@{js/notice_page_paging.js}"
-    ></script>
+    <script th:inline="javascript">
+      function showCommunityDetails(row) {
+        var boardId = row.getAttribute("board-id");
+        window.location.href = "/Community/details/" + boardId;
+      }
+    </script>
   </head>
 
   <body>
@@ -57,41 +57,33 @@
     </div>
     <div class="bannerbackground">
       <div class="banner">
-        <h1>공지사항</h1>
+        <h1>공지 사항</h1>
       </div>
     </div>
+    <div class="searchtitlebelowbanner"><h1>공지 사항</h1></div>
 
-    <section class="ftco-section" style="height: 1000px">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-6 text-center mb-5">
-            <h2 class="heading-section">공지사항</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <!-- page count -->
-            <div id="page_info"></div>
-            <!-- board -->
-            <div class="table-wrap">
-              <table class="table">
-                <thead class="thead-dark">
-                  <tr>
-                    <th>no.</th>
-                    <th>title</th>
-                    <th>date</th>
-                  </tr>
-                </thead>
-                <tbody id="html_list"></tbody>
-              </table>
-              <!-- pagination -->
-              <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center" id="paging"></ul>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <table>
+      <tr>
+        <th>no.</th>
+        <th>title</th>
+        <th>date</th>
+        <!-- Add more columns if needed -->
+      </tr>
+      <tr
+        th:each="community : ${communities}"
+        th:attr="board-id=${community.board_num}"
+        onclick="showCommunityDetails(this)"
+      >
+        <td th:text="${community.board_num ?: 'N/A'}"></td>
+        <td th:text="${community.title ?: 'N/A'}"></td>
+        <td th:text="${#dates.format(community.writeDate, 'yyyy-MM-dd')}"></td>
+
+        <!-- Add more columns if needed -->
+      </tr>
+    </table>
+
+    <div th:if="${communities == null or communities.isEmpty()}">
+      <p>공지사항이 존재하지 않습니다</p>
+    </div>
   </body>
 </html>

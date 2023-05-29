@@ -16,13 +16,13 @@ import lib.backend.libraryservice.Entity.Borrow;
 import lib.backend.libraryservice.Entity.Reservation;
 
 @Controller
-public class PageController {
+public class myPageController {
 
     private BorrowService borrowService;
     private ReservationService reservationService;
 
     @Autowired
-    public PageController(ReservationService reservationService, BorrowService borrowService) {
+    public myPageController(ReservationService reservationService, BorrowService borrowService) {
         this.borrowService = borrowService;
         this.reservationService = reservationService;
     }
@@ -53,8 +53,5 @@ public class PageController {
     // return "community";
     // }
 
-    @GetMapping("/community")
-    public String community() {
-        return "Community";
-    }
+    
 }

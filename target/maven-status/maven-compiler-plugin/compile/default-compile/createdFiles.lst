@@ -5,7 +5,6 @@ lib\backend\libraryservice\Entity\Book.class
 lib\backend\libraryservice\repository\ReservationRepository.class
 lib\backend\libraryservice\LibraryServiceApplication.class
 lib\backend\libraryservice\Entity\Reservation.class
-lib\backend\libraryservice\controller\PageController.class
 lib\backend\libraryservice\service\BookService.class
 lib\backend\libraryservice\repository\UserRepository.class
 lib\backend\libraryservice\controller\HomeController.class

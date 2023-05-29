@@ -50,7 +50,7 @@ public class BorrowController {
             return message;
         } else {
             borrowService.borrowFunc(user.getUser_num(), bookcode);
-            String message = "<script>alert('대출되었습니다. 3시간 내에 대출 완료를 하셔야 대출이 완료됩니다.');history.back();</script>";
+            String message = "<script>alert('대출되었습니다. 3시간 내에 대출 완료를 하셔야 대출이 완료됩니다.');location.href='/mypage';</script>";
             return message; // Return response with status code "3"
             // and message
         }
@@ -69,14 +69,31 @@ public class BorrowController {
         if (user == null) { // 1. 로그인 안한경우
             String message = "<script>alert('로그인하셔야 합니다.');history.back();</script>";
             return message;
-        }
-        if (user.getUser_num() == borrowService.showBorrowUserNum(bookcode)) {
+        } else {
             borrowService.returnFunc(bookcode, user.getUser_num());
             String message = "<script>alert('반납되었습니다.');location.href='/mypage';</script>";
             return message; // Return response with status code "3"
-        } else {
-            String message = "<script>alert('일시적인 에러입니다.');history.back();</script>";
+        }
+        // and message
+    }
+
+    @ResponseBody
+    @RequestMapping("/extend")
+    public String extendBook(@RequestParam("code") String code, HttpSession session,
+            Model model) {
+        int bookcode = Integer.parseInt(code); // book_code 값을 정수로 변환
+        if (borrowService.ifExistsByCode(bookcode) == 0) {
+            String message = "<script>alert('이미 누군가 반납하였습니다.');history.back();</script>";
             return message;
+        }
+        User user = (User) session.getAttribute("user");
+        if (user == null) { // 1. 로그인 안한경우
+            String message = "<script>alert('로그인하셔야 합니다.');history.back();</script>";
+            return message;
+        } else {
+            borrowService.returnFunc(bookcode, user.getUser_num());
+            String message = "<script>alert('반납되었습니다.');location.href='/mypage';</script>";
+            return message; // Return response with status code "3"
         }
         // and message
     }

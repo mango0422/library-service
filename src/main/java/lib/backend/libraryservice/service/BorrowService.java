@@ -14,13 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import jakarta.persistence.Query;
-import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
-import jakarta.persistence.EntityManager;
 import lib.backend.libraryservice.Entity.Book;
 import lib.backend.libraryservice.Entity.Borrow;
-import lib.backend.libraryservice.Entity.User;
 import lib.backend.libraryservice.repository.BorrowRepository;
 import lib.backend.libraryservice.repository.BookRepository;
 import lib.backend.libraryservice.service.BookService;
@@ -40,15 +36,6 @@ public class BorrowService {
         this.borrowRepository = borrowRepository;
         this.bookRepository = bookRepository;
         this.reservationService = reservationService;
-    }
-
-    @Autowired
-    private EntityManager entityManager;
-
-    public List<Book> executeQuery(String query) {
-        Query nativeQuery = entityManager.createNativeQuery(query, Borrow.class);
-        List<Book> bookborrows = nativeQuery.getResultList();
-        return bookborrows;
     }
 
     // 유저 코드를 이용하여 예약한 도서 목록 출력하기.
@@ -81,10 +68,11 @@ public class BorrowService {
     }
 
     // 반납 기능
+    @Transactional
     public void returnFunc(Integer book_code, Integer user_num) {
-        String sql = "DELETE FROM borrow WHERE book_code = ?";
+        String sql = "DELETE FROM borrow WHERE code = ?";
         jdbcTemplate.update(sql, book_code);
-        bookRepository.updateBookBorrowByBookCode(book_code, null);
+        bookRepository.updateBookBorrowByBookCode(book_code, user_num);
     }
 
     // 살재 대출 구현

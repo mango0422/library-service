@@ -1,0 +1,64 @@
+# Java specific
+*.class
+*.jar
+*.war
+*.ear
+
+# Package Files
+*.zip
+*.tar.gz
+*.rar
+
+# Maven specific
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+**/mvn/wrapper/maven-wrapper.jar
+
+# Spring Boot specific
+*.log
+spring.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files
+/.idea
+*.iml
+*.ipr
+*.iws
+/.vscode
+
+# Eclipse specific
+*.class
+*.project
+*.classpath
+/.settings/
+/bin/
+/target/
+/.mvn/
+/.metadata/
+/test-output/
+
+# Intellij specific
+/out/
+/.idea/
+/*.iws
+*.iml
+*.ipr
+
+# VSCode specific
+.vscode/
+
+# Thumbnails
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.swp
